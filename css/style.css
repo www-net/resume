@@ -29,6 +29,17 @@ html {
   color: var(--basic-black);
 }
 
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  box-sizing: border-box;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -57,16 +68,7 @@ a:hover {
   color: #535bf2;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  flex-wrap: wrap;
-  flex-direction: column;
-  box-sizing: border-box;
-  min-width: 320px;
-  min-height: 100vh;
-}
+
 
 h1 {
   font-size: 3.2em;
@@ -171,7 +173,7 @@ section {
 
   font-weight: 600;
   font-size: var(--font-size-big);
-  color: var(--basic-gray);
+  color: var(--dark-gray);
 }
 
 .languages {
@@ -236,6 +238,15 @@ section {
   }
 }
 
+.experience__title {
+  margin: 0;
+  margin-bottom: 1rem;
+  padding: 0;
+
+  font-weight: 500;
+  font-size: var(--font-size-heading);
+}
+
 .experience__list {
   margin: 0;
   padding: 0;
@@ -252,6 +263,9 @@ section {
 .experience__item-head {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .experience__item_date {
@@ -262,12 +276,34 @@ section {
   font-size: var(--font-size);
 }
 
-.experience__title {
+.experience__item-main {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+.experience__item-name {
   margin: 0;
   padding: 0;
 
   font-weight: 500;
-  font-size: var(--font-size-heading);
+  font-size: var(--font-size-bigger);
+}
+
+.experience__item-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem; 
+
+}
+
+.experience__further {
+  margin: 0;
+  padding: 0;
+}
+
+.experience__item-list {
+  margin: 0;
+  padding: 0;
 }
 
 .tools {
@@ -302,3 +338,16 @@ section {
 .interests__title {
   margin: 0;
 }
+
+.interests__list {
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.contacts {
+  display: flex;
+  flex-wrap: wrap;
+}
+
