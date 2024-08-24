@@ -14,11 +14,11 @@
   --font-size-big: 18px;
   --font-size-heading: 20px;
 
-  --basic-gray: #f0f0f0;
   --basic-white: #ffffff;
   --basic-black: #000000;
-  --light-gray: #5c5c5c;
   --gray: #3f3d3d;
+  --light-gray: #5c5c5c;
+  --basic-gray: #f0f0f0;
   --basic-green: #28d979;
   --light-green: #ebf9f2;
   --basic-yellow: #f6ed1e;
@@ -110,9 +110,11 @@ button:focus-visible {
 }
 
 .container {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  max-width: 1050px;
   margin: auto;
   padding: 1rem 2rem;
 }
@@ -226,6 +228,8 @@ section {
 @media(min-width: 850px) {
   .center {
     flex-wrap: nowrap;
+    justify-content: start;
+
   }
 }
 
@@ -234,12 +238,6 @@ section {
   padding: 1.5rem;
   border-radius: 12px;
   flex-shrink: 5;
-}
-
-@media(min-width: 850px) {
-  .experience {
-    max-width: 50rem;
-  }
 }
 
 .experience__title {
@@ -266,7 +264,7 @@ section {
   background-color: var(--basic-white);
 }
 
-.experience__item--active {
+.experience__item--most-recent {
   color: var(--basic-white);
   background-color: var(--basic-green);
 }
@@ -332,11 +330,11 @@ section {
   background-color: var(--gray);
 }
 
-.experience__item--active .experience__further {
+.experience__item--most-recent .experience__further {
   color: var(--light-green);
 }
 
-.experience__item--active .experience__further:nth-child(n+2)::before {
+.experience__item--most-recent .experience__further:nth-child(n+2)::before {
   background-color: var(--light-green)
 }
 
@@ -361,6 +359,7 @@ section {
 @media(min-width: 850px) {
   .tools {
     width: 250px;
+    flex-grow: 0;
   }
 }
 
@@ -368,6 +367,9 @@ section {
   margin: 0;
   margin-bottom: 1rem;
   padding: 0;
+
+  font-weight: 500;
+  font-size: var(--font-size-heading);
 }
 
 .tools__list {
@@ -437,25 +439,183 @@ section {
 
 .footer {
   display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
+  gap: 2rem;
 }
 
-.interests {
-  margin-bottom: 20px;
+@media (min-width: 850px) {
+  .footer {
+    flex-wrap: nowrap;
+  }
 }
 
-.interests__title {
+.education {
+  padding: 1.5rem;
+
+  border-radius: 12px;
+}
+
+.education__title {
   margin: 0;
+  margin-bottom: 1rem;
+  padding: 0;
+
+  font-weight: 500;
 }
 
-.interests__list {
+.education__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: start;
+  gap: 2rem;
   margin: 0;
   padding: 0;
 
   list-style: none;
 }
 
+.education__card {
+  position: relative;
+
+  flex-grow: 1;
+  padding: 1rem;
+
+  border-radius: 10px;
+  background-color: var(--basic-white);
+}
+
+@media (min-width: 850px) {
+  .education__card {
+  max-width: calc(50% - 3rem);
+  }
+}
+
+.education__card--most-recent {
+  color: var(--basic-white);
+  
+  background-color: var(--basic-green);
+}
+
+.education__card-date {
+  margin: 0;
+  margin-bottom: 1rem;
+  padding: 0;
+
+  font-size: var(--font-size-bigger);
+  font-weight: 500;
+}
+
+.education__card-title {
+  margin: 0;
+  padding: 0;
+
+  font-size: var(--font-size-bigger);
+  font-weight: 500;
+}
+
+.education__card-list {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 0.7rem;
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.footer-box {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (min-width: 850px) {
+  .footer-box {
+    max-width: 45%;
+  }
+}
+
+.education__like {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+
+  margin: 0;
+  padding: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+
+  background-image: url(./icons/heart.svg);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: contain;
+
+}
+
+.interests {
+  padding: 1.5rem;
+
+  border-radius: 12px;
+}
+
+.interests__title {
+  margin: 0;
+  margin-bottom: 1rem;
+  padding: 0;
+}
+
+.interests__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+@media (min-width: 850px) {
+  .interests__list {
+    flex-grow: 0;
+  }
+}
+
+.interests__list-item {
+  padding: 0 1rem;
+
+  line-height: 2;
+
+  border-radius: 40px;
+  background-color: var(--basic-white);
+}
+
 .contacts {
   display: flex;
   flex-wrap: wrap;
+  padding: 1.5rem;
+
+  color: var(--basic-white);
+
+  border-radius: 12px;
+  background-color: var(--basic-black);
+}
+
+.contacts-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.contacts__text {
+  margin: 0;
+  padding: 0;
+
+  font-size: var(--font-size-heading);
+  font-weight: 500;
+}
+
+.contacts__link {
+  color: var(--basic-gray);
+  font-size: var(--font-size-bigger);
 }
