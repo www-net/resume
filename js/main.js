@@ -1,22 +1,44 @@
-import '../css/style.css'
-import '../css/fonts.css'
+import '../css/style.css';
+import '../css/fonts.css';
 
-import { render } from './util'
+import { render, RenderPosition } from './util';
 
 import { createTopSection } from './components/top/top';
 import { createProfileImage } from './components/top/profile-img'
 import { createNameСandidate } from './components/top/name';
 import { createLanguageBar } from './components/top/languages';
+import { createCenterSection } from './components/center/center';
+import { createExperienceTemplate } from './components/center/experience';
+import { createToolsTemplate } from './components/center/tools';
+import { createBottomSection } from './components/bottom/bottom';
+import { createEducationTemplate } from './components/bottom/education';
+import { createInterestsTemplate } from './components/bottom/interests';
+import { createContactsTemplate } from './components/bottom/contacts';
+
 
 const siteMain = document.querySelector(`main`);
 
-render(siteMain, createTopSection())
+render(siteMain, createTopSection());
 
 const resumeTop = document.querySelector(`.top`);
 
-render(resumeTop, createProfileImage())
-render(resumeTop, createNameСandidate())
-render(resumeTop, createLanguageBar())
+render(resumeTop, createProfileImage());
+render(resumeTop, createNameСandidate());
+render(resumeTop, createLanguageBar());
 
-render(siteMain, createLanguageBar())
+render(siteMain, createCenterSection());
+const resumeCenter = document.querySelector(`.center`);
+
+render(resumeCenter, createExperienceTemplate());
+render(resumeCenter, createToolsTemplate());
+
+render(siteMain, createBottomSection());
+const resumeBottom = document.querySelector(`.bottom`);
+const resumeBottomBox = resumeBottom.querySelector(`.bottom-box`);
+
+render(resumeBottom, createEducationTemplate(), RenderPosition.AFTERBEGIN );
+render(resumeBottomBox, createInterestsTemplate());
+render(resumeBottomBox, createContactsTemplate());
+
+
 
