@@ -176,8 +176,6 @@ section {
 }
 
 .languages {
-  position: relative;
-
   box-sizing: border-box;
   flex-grow: 5;
   min-width: 300px;
@@ -188,6 +186,7 @@ section {
 
 .languages__title {
   margin: 0;
+  margin-bottom: 1rem;
 
   padding: 0;
 
@@ -196,17 +195,12 @@ section {
 }
 
 .languages__list {
-  position: relative;
-  top: 50%;
-
   display: flex;
   flex-direction: column;
   margin: 0;
   padding: 0;
 
   list-style: none;
-
-  transform: translateY(-50%);
 }
 
 .languages__progress {

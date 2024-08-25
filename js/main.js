@@ -18,3 +18,5 @@ render(resumeTop, createProfileImage())
 render(resumeTop, createNameСandidate())
 render(resumeTop, createLanguageBar())
 
+render(siteMain, createLanguageBar())
+
