@@ -53,7 +53,6 @@ for (let i = 0; i < EDUCATION_CARDS_COUNT; i++) {
   render(education, createEducationCard())
 }
 
-
 render(resumeBottomBox, createInterestsTemplate());
 render(resumeBottomBox, createContactsTemplate());
 
