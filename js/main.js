@@ -1,10 +1,20 @@
 import '../css/style.css'
 import '../css/fonts.css'
 
-document.querySelector('#app').innerHTML = `
-  <section>
+import { render } from './util'
 
-    <h1>Hello!</h1>
+import { createTopSection } from './components/top/top';
+import { createProfileImage } from './components/top/profile-img'
+import { createNameСandidate } from './components/top/name';
+import { createLanguageBar } from './components/top/languages';
 
-  </section>
-`
+const siteMain = document.querySelector(`main`);
+
+render(siteMain, createTopSection())
+
+const resumeTop = document.querySelector(`.top`);
+
+render(resumeTop, createProfileImage())
+render(resumeTop, createNameСandidate())
+render(resumeTop, createLanguageBar())
+
