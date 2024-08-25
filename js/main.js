@@ -14,7 +14,11 @@ import { createBottomSection } from './components/bottom/bottom';
 import { createEducationTemplate } from './components/bottom/education';
 import { createInterestsTemplate } from './components/bottom/interests';
 import { createContactsTemplate } from './components/bottom/contacts';
+import { createExperienceCardTemplate } from './components/center/experiense-card';
+import { createEducationCard } from './components/bottom/education-card';
 
+const EXPERIENCE_CARDS_COUNT = 2;
+const EDUCATION_CARDS_COUNT = 2;
 
 const siteMain = document.querySelector(`main`);
 
@@ -30,6 +34,12 @@ render(siteMain, createCenterSection());
 const resumeCenter = document.querySelector(`.center`);
 
 render(resumeCenter, createExperienceTemplate());
+const experience = resumeCenter.querySelector(`.experience__list`);
+
+for (let i = 0; i < EXPERIENCE_CARDS_COUNT; i++){
+  render(experience, createExperienceCardTemplate());
+}
+
 render(resumeCenter, createToolsTemplate());
 
 render(siteMain, createBottomSection());
@@ -37,6 +47,13 @@ const resumeBottom = document.querySelector(`.bottom`);
 const resumeBottomBox = resumeBottom.querySelector(`.bottom-box`);
 
 render(resumeBottom, createEducationTemplate(), RenderPosition.AFTERBEGIN );
+const education = resumeBottom.querySelector(`.education__list`);
+
+for (let i = 0; i < EDUCATION_CARDS_COUNT; i++) {
+  render(education, createEducationCard())
+}
+
+
 render(resumeBottomBox, createInterestsTemplate());
 render(resumeBottomBox, createContactsTemplate());
 
