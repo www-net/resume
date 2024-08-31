@@ -1,5 +1,3 @@
-import { toolDesignIcons, toolNoCodeIcons, toolOtherIcons } from "../../mock/constants";
-
 const createToolsMarkup = (src) => {
   return (
     `<li class="tools__icon">
@@ -8,42 +6,36 @@ const createToolsMarkup = (src) => {
   )
 }
 
-export const createToolsTemplate = () => {
+export const createToolsListMarkup = (title, sources) => {
 
+  const toolMarkup = sources.map((icon) => createToolsMarkup(icon)).join('\n');
 
+  return (`
+    <li class="tools__list-item">
+      <h3 class="tools__item-title">${title}</h3>
+      <ul class="tools__inner-item-list">
+        ${toolMarkup}
+      </ul>
+    </li>
+    `)
+}
 
-  const toolDesignMarkup = toolDesignIcons.map((icon) => createToolsMarkup(icon)).join('\n'); 
-  const toolNoCodeMarkup = toolNoCodeIcons.map((icon) => createToolsMarkup(icon)).join('\n'); 
-  const toolOtherMarkup = toolOtherIcons.map((icon) => createToolsMarkup(icon)).join('\n'); 
+export const createToolsTemplate = (toolIcons) => {
+
+  const toolMarkups = toolIcons.map((section) => {
+    const { title, sources } = section;
+    return createToolsListMarkup(title, sources)
+  }).join(`\n`);
 
 
   return (
     `<section class="tools">
-        <h2 class="tools__title">Tools</h2>
-        <ul class="tools__list">
-          <li class="tools__list-item">
-            <h3 class="tools__item-title">design</h3>
-            <ul class="tools__inner-item-list">
-              ${toolDesignMarkup}
-              </ul>
-              </li>
-              <li class="tools__list-item">
-              <h3 class="tools__item-title">no-code</h3>
-              <ul class="tools__inner-item-list">
-              
-              ${toolNoCodeMarkup}
-              
-              </ul>
-              </li>
-              <li class="tools__list-item">
-              <h3 class="tools__item-title">artoficial intelligence</h3>
-              <ul class="tools__inner-item-list">
-              
-              ${toolOtherMarkup}
+      <h2 class="tools__title">Tools</h2>
+      <ul class="tools__list">
 
-            </ul>
-          </li>
-        </ul>
-      </section>`
+        ${toolMarkups}
+
+      </ul>
+    </section>`
   )
 }
