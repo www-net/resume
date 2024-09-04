@@ -17,9 +17,8 @@ import { createContactsTemplate } from './components/bottom/contacts';
 import { createExperienceCardTemplate } from './components/center/experiense-card';
 import { createEducationCard } from './components/bottom/education-card';
 
-import { toolIcons } from './mock/constants';
+import { experienceDate, toolIcons } from './mock/constants';
 
-const EXPERIENCE_CARDS_COUNT = 2;
 const EDUCATION_CARDS_COUNT = 2;
 
 const siteMain = document.querySelector(`main`);
@@ -37,10 +36,7 @@ const resumeCenter = document.querySelector(`.center`);
 
 render(resumeCenter, createExperienceTemplate());
 const experience = resumeCenter.querySelector(`.experience__list`);
-
-for (let i = 0; i < EXPERIENCE_CARDS_COUNT; i++){
-  render(experience, createExperienceCardTemplate());
-}
+render(experience, createExperienceCardTemplate(experienceDate));
 
 render(resumeCenter, createToolsTemplate(toolIcons));
 

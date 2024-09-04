@@ -6,7 +6,7 @@ const createToolsMarkup = (src) => {
   )
 }
 
-export const createToolsListMarkup = (title, sources) => {
+const createToolsListMarkup = (title, sources) => {
 
   const toolMarkup = sources.map((icon) => createToolsMarkup(icon)).join('\n');
 
