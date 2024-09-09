@@ -3,32 +3,33 @@ import '../css/fonts.css';
 
 import { render, RenderPosition } from './util';
 
-import { createTopSection } from './components/top/top';
-import { createProfileImage } from './components/top/profile-img'
-import { createNameСandidate } from './components/top/name';
-import { createLanguageBar } from './components/top/languages';
-import { createCenterSection } from './components/center/center';
-import { createExperienceTemplate } from './components/center/experience';
-import { createToolsTemplate } from './components/center/tools';
-import { createBottomSection } from './components/bottom/bottom';
-import { createEducationTemplate } from './components/bottom/education';
-import { createInterestsTemplate } from './components/bottom/interests';
-import { createContactsTemplate } from './components/bottom/contacts';
-import { createExperienceCardTemplate } from './components/center/experiense-card';
-import { createEducationCard } from './components/bottom/education-card';
+import TopComponent from './components/top/top';
+import  ProfileImageComponent  from './components/top/profile-img'
+import  NameСandidateComponent  from './components/top/name';
+// import { createLanguageBar } from './components/top/languages';
+// import { createCenterSection } from './components/center/center';
+// import { createExperienceTemplate } from './components/center/experience';
+// import { createToolsTemplate } from './components/center/tools';
+// import { createBottomSection } from './components/bottom/bottom';
+// import { createEducationTemplate } from './components/bottom/education';
+// import { createInterestsTemplate } from './components/bottom/interests';
+// import { createContactsTemplate } from './components/bottom/contacts';
+// import { createExperienceCardTemplate } from './components/center/experiense-card';
+// import { createEducationCard } from './components/bottom/education-card';
 
-import { experienceDate, toolIcons } from './mock/constants';
+// import { experienceDate, toolIcons } from './mock/constants';
 
-const EDUCATION_CARDS_COUNT = 2;
+// const EDUCATION_CARDS_COUNT = 2;
 
 const siteMain = document.querySelector(`main`);
 
-render(siteMain, createTopSection());
+
+render(siteMain, new TopComponent().getElement());
 
 const resumeTop = document.querySelector(`.top`);
 
-render(resumeTop, createProfileImage());
-render(resumeTop, createNameСandidate());
+render(resumeTop, new  ProfileImageComponent().getElement());
+render(resumeTop, new NameСandidateComponent().getElement());
 render(resumeTop, createLanguageBar());
 
 render(siteMain, createCenterSection());

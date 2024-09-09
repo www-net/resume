@@ -1,3 +1,5 @@
+import { createElement } from "../../util";
+
 export const createNameСandidate = () => {
   return (
     `<section class="name-box">
@@ -10,3 +12,23 @@ export const createNameСandidate = () => {
   )
 }
 
+export default class NameCandidate {
+  constructor() {
+    this._element = null
+  }
+
+  getTemplate() {
+    return createNameСandidate();
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate())
+    }
+    return this._element
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}
