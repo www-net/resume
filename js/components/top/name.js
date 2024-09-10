@@ -1,6 +1,6 @@
 import { createElement } from "../../util";
 
-export const createNameСandidate = () => {
+const createNameСandidate = () => {
   return (
     `<section class="name-box">
       <p class="name-box__sub">Hello 👋🏻 I'm</p>

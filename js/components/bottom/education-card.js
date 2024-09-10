@@ -1,4 +1,6 @@
-export const createEducationCard = () => {
+import { createElement } from "../../util"
+
+const createEducationCard = () => {
   return (
     `<li class="education__card">
         <p class="education__card-date">2023</p>
@@ -17,4 +19,26 @@ export const createEducationCard = () => {
         <p>Coursera</p>
       </li>`
   )
+}
+
+
+export default class EducationCard {
+  constructor(){
+    this._element = null
+  }
+
+  getTemplate() {
+    return createEducationCard()
+  }
+
+  getElement() {
+    if(!this._element) {
+      this._element = createElement(this.getTemplate())
+    }
+    return this._element
+  }
+
+  removeElement() {
+    this._element = null
+  }
 }

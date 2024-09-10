@@ -1,4 +1,6 @@
-export const createInterestsTemplate = () => {
+import { createElement } from "../../util"
+
+const createInterestsTemplate = () => {
   return (
     `<section class="interests">
             <h2 class="interests__title">Interests</h2>
@@ -18,3 +20,23 @@ export const createInterestsTemplate = () => {
   )
 }
 
+export default class Interests {
+  constructor(){
+    this._element = null
+  }
+
+  getTemplate() {
+    return createInterestsTemplate()
+  }
+
+  getElement() {
+    if(!this._element) {
+      this._element = createElement(this.getTemplate())
+    }
+    return this._element
+  }
+
+  removeElement() {
+    this._element = null
+  }
+}

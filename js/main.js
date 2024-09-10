@@ -4,22 +4,22 @@ import '../css/fonts.css';
 import { render, RenderPosition } from './util';
 
 import TopComponent from './components/top/top';
-import  ProfileImageComponent  from './components/top/profile-img'
-import  NameСandidateComponent  from './components/top/name';
-// import { createLanguageBar } from './components/top/languages';
-// import { createCenterSection } from './components/center/center';
-// import { createExperienceTemplate } from './components/center/experience';
-// import { createToolsTemplate } from './components/center/tools';
-// import { createBottomSection } from './components/bottom/bottom';
-// import { createEducationTemplate } from './components/bottom/education';
-// import { createInterestsTemplate } from './components/bottom/interests';
-// import { createContactsTemplate } from './components/bottom/contacts';
-// import { createExperienceCardTemplate } from './components/center/experiense-card';
-// import { createEducationCard } from './components/bottom/education-card';
+import ProfileImageComponent  from './components/top/profile-img'
+import NameСandidateComponent  from './components/top/name';
+import LanguageComponent from './components/top/languages';
+import CenterComponent  from './components/center/center';
+import ExperienceComponent from './components/center/experience';
+import ExperienceCardComponent  from './components/center/experiense-card';
+import ToolsComponent from './components/center/tools';
+import BottomComponent from './components/bottom/bottom';
+import EducationComponent from './components/bottom/education';
+import EducationCardComponent from './components/bottom/education-card';
+import InterestsComponent from './components/bottom/interests';
+import ContactsComponent from './components/bottom/contacts';
 
-// import { experienceDate, toolIcons } from './mock/constants';
+import { experienceDate, toolIcons } from './mock/constants';
 
-// const EDUCATION_CARDS_COUNT = 2;
+const EDUCATION_CARDS_COUNT = 3;
 
 const siteMain = document.querySelector(`main`);
 
@@ -28,33 +28,33 @@ render(siteMain, new TopComponent().getElement());
 
 const resumeTop = document.querySelector(`.top`);
 
-render(resumeTop, new  ProfileImageComponent().getElement());
+render(resumeTop, new ProfileImageComponent().getElement());
 render(resumeTop, new NameСandidateComponent().getElement());
-render(resumeTop, createLanguageBar());
+render(resumeTop, new LanguageComponent().getElement());
 
-render(siteMain, createCenterSection());
+render(siteMain, new CenterComponent().getElement());
 const resumeCenter = document.querySelector(`.center`);
 
-render(resumeCenter, createExperienceTemplate());
+render(resumeCenter, new ExperienceComponent().getElement());
 const experience = resumeCenter.querySelector(`.experience__list`);
-render(experience, createExperienceCardTemplate(experienceDate));
+experienceDate.forEach((data, idx) => render(experience, new ExperienceCardComponent(data, idx).getElement()))
 
-render(resumeCenter, createToolsTemplate(toolIcons));
+render(resumeCenter, new ToolsComponent(toolIcons).getElement());
 
 
-render(siteMain, createBottomSection());
+render(siteMain, new BottomComponent().getElement());
 const resumeBottom = document.querySelector(`.bottom`);
 const resumeBottomBox = resumeBottom.querySelector(`.bottom-box`);
 
-render(resumeBottom, createEducationTemplate(), RenderPosition.AFTERBEGIN );
+render(resumeBottom, new EducationComponent().getElement(), RenderPosition.AFTERBEGIN );
 const education = resumeBottom.querySelector(`.education__list`);
 
 for (let i = 0; i < EDUCATION_CARDS_COUNT; i++) {
-  render(education, createEducationCard())
+  render(education, new EducationCardComponent().getElement())
 }
 
-render(resumeBottomBox, createInterestsTemplate());
-render(resumeBottomBox, createContactsTemplate());
+render(resumeBottomBox, new InterestsComponent().getElement());
+render(resumeBottomBox, new ContactsComponent().getElement());
 
 
 

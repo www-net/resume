@@ -1,3 +1,5 @@
+import { createElement } from "../../util"
+
 export const createContactsTemplate = () => {
   return (
     `<section class="contacts">
@@ -10,4 +12,25 @@ export const createContactsTemplate = () => {
   
       </section>`
   )
+}
+
+export default class Contacts {
+  constructor() {
+    this._element = null
+  }
+
+  getTemplate() {
+    return createContactsTemplate()
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate())
+    }
+    return this._element
+  }
+
+  removeElement() {
+    this._element = null
+  }
 }

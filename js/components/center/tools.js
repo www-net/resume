@@ -1,3 +1,5 @@
+import { createElement } from "../../util";
+
 const createToolsMarkup = (src) => {
   return (
     `<li class="tools__icon">
@@ -20,7 +22,7 @@ const createToolsListMarkup = (title, sources) => {
     `)
 }
 
-export const createToolsTemplate = (toolIcons) => {
+const createToolsTemplate = (toolIcons) => {
 
   const toolMarkups = toolIcons.map((section) => {
     const { title, sources } = section;
@@ -38,4 +40,26 @@ export const createToolsTemplate = (toolIcons) => {
       </ul>
     </section>`
   )
+}
+
+export default class Tools {
+  constructor(icons) {
+    this._icons = icons
+    this._element = null
+  }
+
+  getTemplate() {
+    return createToolsTemplate(this._icons)
+  }
+
+  getElement() {
+    if(!this._element) {
+      this._element = createElement(this.getTemplate())
+    }
+    return this._element
+  }
+
+  removeElement() {
+    this._element = null
+  }
 }

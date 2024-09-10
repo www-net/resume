@@ -1,4 +1,5 @@
 import { MONTHS } from "../../mock/constants";
+import { createElement } from "../../util";
 
 const desctiptionMarkup = (tasks) => {
   return tasks.map(el => {
@@ -8,19 +9,17 @@ const desctiptionMarkup = (tasks) => {
   }).join(`\n`)
 };
 
-export const createExperienceCardTemplate = (dataList) => {
-  return dataList.reduce((acc, current, idx) => {
-    const { date, profession, organisation, clockLoad, tasks } = current;
+const createExperienceCardTemplate = (data, idx) => {
+  const { date, profession, organisation, clockLoad, tasks } = data;
 
-    const mostRecent = idx === 0 ? `experience__item--most-recent` : ``;
-    const dateStart = `${MONTHS[date.start.getMonth()].slice(0,3)}.${date.start.getFullYear()}`;
-    const dateEnd = date.end ? `${MONTHS[date.end.getMonth()].slice(0,3)}.${date.end.getFullYear()}` : `Present`;
-    const workForm =  organisation ? `<p class="experience__further">${organisation}</p>`: ``;
-    const description = desctiptionMarkup(tasks);
+  const mostRecent = idx === 0 ? `experience__item--most-recent` : ``;
+  const dateStart = `${MONTHS[date.start.getMonth()].slice(0, 3)}.${date.start.getFullYear()}`;
+  const dateEnd = date.end ? `${MONTHS[date.end.getMonth()].slice(0, 3)}.${date.end.getFullYear()}` : `Present`;
+  const workForm = organisation ? `<p class="experience__further">${organisation}</p>` : ``;
+  const description = desctiptionMarkup(tasks);
 
-
-    return acc + (
-      `<li class="experience__item ${mostRecent}">
+  return (
+    `<li class="experience__item ${mostRecent}">
             <div class="experience__item-head">
               <p class="experience__time-wrapper"><time class="experience__item_date">${dateStart}</time> - <time class="experience__item_date">${dateEnd}</time></p>
               ${idx === 0 ? `<b class="most-recent">most recent</b>` : ``}
@@ -40,6 +39,28 @@ export const createExperienceCardTemplate = (dataList) => {
               </div>
             </div>
           </li>\n`
-    )
-  },``);
+  )
 };
+
+export default class ExperienceCard {
+  constructor(data, idx) {
+    this._element = null
+    this._data = data
+    this._idx = idx
+  }
+
+  getTemplate() {
+    return createExperienceCardTemplate(this._data, this._idx)
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate())
+    }
+    return this._element
+  }
+
+  removeElement() {
+    this._element = null
+  }
+}
