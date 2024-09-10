@@ -49,8 +49,24 @@ const resumeBottomBox = resumeBottom.querySelector(`.bottom-box`);
 render(resumeBottom, new EducationComponent().getElement(), RenderPosition.AFTERBEGIN );
 const education = resumeBottom.querySelector(`.education__list`);
 
+const renderEducationCard = (cardListElement, place) => {
+  const cardComponent = new EducationCardComponent();
+
+  const cardElement = cardComponent.getElement()
+  const likeButton = cardElement.querySelector(`.education__like`);
+  
+  likeButton.addEventListener(`click`, onLikeButtonClick);
+  
+  function onLikeButtonClick () {
+    likeButton.classList.toggle(`education__like--yellow`);
+    cardElement.classList.toggle(`education__card--most-recent`)
+  }
+
+  render(cardListElement, cardComponent.getElement(), place)
+}
+
 for (let i = 0; i < EDUCATION_CARDS_COUNT; i++) {
-  render(education, new EducationCardComponent().getElement())
+  renderEducationCard(education)
 }
 
 render(resumeBottomBox, new InterestsComponent().getElement());

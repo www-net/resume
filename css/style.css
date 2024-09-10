@@ -551,7 +551,12 @@ section {
   background-repeat: no-repeat;
   background-position: 0 0;
   background-size: contain;
+  border: 0;
+  background-color: transparent;
+}
 
+.education__like--yellow {
+  background-image: url(./icons/heart-yellow.svg);
 }
 
 .interests {

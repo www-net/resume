@@ -1,9 +1,9 @@
-import { createElement } from "../../util"
+import { createElement } from "../../util";
 
 const createEducationCard = () => {
 
-  const randomMostRecent = Math.random() > 0.5 ? `education__card--most-recent`: ``
-  const randomLike = randomMostRecent ? `<div class="education__like"></div>`: ``
+  const randomMostRecent = Math.random() > 0.5 ? `education__card--most-recent`: ``;
+  const randomLike = randomMostRecent ? `<button class="education__like education__like--yellow"></button>`: `<button class="education__like"></button>`;
 
   return (
     `<li class="education__card ${randomMostRecent}">
@@ -24,8 +24,7 @@ const createEducationCard = () => {
         ${randomLike}
       </li>`
   )
-}
-
+};
 
 export default class EducationCard {
   constructor() {
@@ -46,4 +45,4 @@ export default class EducationCard {
   removeElement() {
     this._element = null
   }
-}
+};
