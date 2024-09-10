@@ -1,8 +1,12 @@
 import { createElement } from "../../util"
 
 const createEducationCard = () => {
+
+  const randomMostRecent = Math.random() > 0.5 ? `education__card--most-recent`: ``
+  const randomLike = randomMostRecent ? `<div class="education__like"></div>`: ``
+
   return (
-    `<li class="education__card">
+    `<li class="education__card ${randomMostRecent}">
         <p class="education__card-date">2023</p>
         <h3 class="education__card-title">UI/UX</h3>
         <ul class="education__card-list">
@@ -17,13 +21,14 @@ const createEducationCard = () => {
           <li><span>#Ux</span></li>
         </ul>
         <p>Coursera</p>
+        ${randomLike}
       </li>`
   )
 }
 
 
 export default class EducationCard {
-  constructor(){
+  constructor() {
     this._element = null
   }
 
@@ -32,7 +37,7 @@ export default class EducationCard {
   }
 
   getElement() {
-    if(!this._element) {
+    if (!this._element) {
       this._element = createElement(this.getTemplate())
     }
     return this._element
