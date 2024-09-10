@@ -37,10 +37,27 @@ const resumeCenter = document.querySelector(`.center`);
 
 render(resumeCenter, new ExperienceComponent().getElement());
 const experience = resumeCenter.querySelector(`.experience__list`);
-experienceDate.forEach((data, idx) => render(experience, new ExperienceCardComponent(data, idx).getElement()))
+
+const renderExperienceCard = (cardListElement, data, idx, place) => {
+  const experienceCardComponent = new ExperienceCardComponent(data, idx)
+  const experienceCardElement = experienceCardComponent.getElement();
+  const mostRecentButton = experienceCardElement.querySelector(`.most-recent`);
+
+  mostRecentButton.addEventListener(`click`, onMostRecentButtonClick)
+
+  function onMostRecentButtonClick(evt) {
+    evt.preventDefault()
+
+    mostRecentButton.classList.toggle(`most-recent--active`);
+    experienceCardElement.classList.toggle(`experience__item--most-recent`);
+  }
+
+  render(cardListElement, experienceCardElement, place)
+}
+
+experienceDate.forEach((data, idx) => renderExperienceCard(experience, data, idx))
 
 render(resumeCenter, new ToolsComponent(toolIcons).getElement());
-
 
 render(siteMain, new BottomComponent().getElement());
 const resumeBottom = document.querySelector(`.bottom`);
@@ -57,7 +74,9 @@ const renderEducationCard = (cardListElement, place) => {
   
   likeButton.addEventListener(`click`, onLikeButtonClick);
   
-  function onLikeButtonClick () {
+  function onLikeButtonClick (evt) {
+    evt.preventDefault();
+
     likeButton.classList.toggle(`education__like--yellow`);
     cardElement.classList.toggle(`education__card--most-recent`)
   }

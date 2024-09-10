@@ -259,13 +259,19 @@ section {
   font-weight: 500;
   font-family: inherit;
   line-height: 1.5rem;
-  color: var(--basic-yellow);
+  color: var(--light-gray);
   
   border: 1px solid transparent;
   border-radius: 59px;
-  background-color: var(--transparent-yellow);
+  background-color: var(--basic-gray);
   cursor: pointer;
   transition: border-color 0.25s;
+}
+
+.most-recent--active {
+  color: var(--basic-yellow);
+
+  background-color: var(--transparent-yellow);
 }
 
 .most-recent:hover {
