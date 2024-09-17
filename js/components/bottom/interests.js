@@ -1,4 +1,4 @@
-import { createElement } from "../../util"
+import AbstractComponent from "../abstract-component"
 
 const createInterestsTemplate = () => {
   return (
@@ -20,23 +20,8 @@ const createInterestsTemplate = () => {
   )
 }
 
-export default class Interests {
-  constructor(){
-    this._element = null
-  }
-
+export default class Interests extends AbstractComponent {
   getTemplate() {
     return createInterestsTemplate()
-  }
-
-  getElement() {
-    if(!this._element) {
-      this._element = createElement(this.getTemplate())
-    }
-    return this._element
-  }
-
-  removeElement() {
-    this._element = null
   }
 }

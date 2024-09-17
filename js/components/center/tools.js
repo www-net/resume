@@ -1,4 +1,4 @@
-import { createElement } from "../../util";
+import AbstractComponent from "../abstract-component";
 
 const createToolsMarkup = (src) => {
   return (
@@ -42,24 +42,13 @@ const createToolsTemplate = (toolIcons) => {
   )
 }
 
-export default class Tools {
+export default class Tools extends AbstractComponent {
   constructor(icons) {
+    super();
     this._icons = icons
-    this._element = null
   }
 
   getTemplate() {
     return createToolsTemplate(this._icons)
-  }
-
-  getElement() {
-    if(!this._element) {
-      this._element = createElement(this.getTemplate())
-    }
-    return this._element
-  }
-
-  removeElement() {
-    this._element = null
   }
 }

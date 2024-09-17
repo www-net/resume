@@ -1,4 +1,4 @@
-import { createElement } from "../../util"
+import AbstractComponent from "../abstract-component"
 
 const createProfileImage = (src = "./images/profileImg.jpg") => {
   return (
@@ -8,25 +8,14 @@ const createProfileImage = (src = "./images/profileImg.jpg") => {
   )
 }
 
-export default class ProfileImage {
+export default class ProfileImage extends AbstractComponent {
   constructor(src) {
+    super();
     this._src = src
-    this._element = null
   }
 
   getTemplate() {
     return createProfileImage(this._src)
   }
 
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate())
-    }
-    
-    return this._element
-  }
-
-  removeElement() {
-    this._element = null;
-  }
 }

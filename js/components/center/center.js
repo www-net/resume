@@ -1,4 +1,4 @@
-import { createElement } from '../../util'
+import AbstractComponent from '../abstract-component'
 
 const  createCenterSection = () => {
   return (
@@ -6,23 +6,8 @@ const  createCenterSection = () => {
   )
 }
 
-export default class CenterSection {
-  constructor(){
-    this._element = null
-  }
-
+export default class CenterSection extends AbstractComponent {
   getTemplate() {
     return createCenterSection()
-  }
-
-  getElement() {
-    if(!this._element) {
-      this._element = createElement(this.getTemplate())
-    }
-    return this._element
-  }
-
-  removeElement() {
-    this._element = null
   }
 }

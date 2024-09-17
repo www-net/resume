@@ -1,5 +1,5 @@
 import { MONTHS } from "../../mock/constants";
-import { createElement } from "../../util";
+import AbstractComponent from "../abstract-component";
 
 const desctiptionMarkup = (tasks) => {
   return tasks.map(el => {
@@ -42,25 +42,14 @@ const createExperienceCardTemplate = (data, idx) => {
   )
 };
 
-export default class ExperienceCard {
+export default class ExperienceCard extends AbstractComponent {
   constructor(data, idx) {
-    this._element = null
+    super();
     this._data = data
     this._idx = idx
   }
 
   getTemplate() {
     return createExperienceCardTemplate(this._data, this._idx)
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate())
-    }
-    return this._element
-  }
-
-  removeElement() {
-    this._element = null
   }
 }

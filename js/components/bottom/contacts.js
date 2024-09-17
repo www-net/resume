@@ -1,4 +1,4 @@
-import { createElement } from "../../util"
+import AbstractComponent from "../abstract-component"
 
 export const createContactsTemplate = () => {
   return (
@@ -14,23 +14,8 @@ export const createContactsTemplate = () => {
   )
 }
 
-export default class Contacts {
-  constructor() {
-    this._element = null
-  }
-
+export default class Contacts extends AbstractComponent {
   getTemplate() {
     return createContactsTemplate()
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate())
-    }
-    return this._element
-  }
-
-  removeElement() {
-    this._element = null
   }
 }

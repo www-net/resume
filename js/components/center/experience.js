@@ -1,4 +1,4 @@
-import { createElement } from '../../util'
+import AbstractComponent from '../abstract-component'
 
 const createExperienceTemplate = () => {
   return (
@@ -13,23 +13,8 @@ const createExperienceTemplate = () => {
   )
 }
 
-export default class Experience {
-  constructor(){
-    this._element = null
-  }
-
+export default class Experience extends AbstractComponent {
   getTemplate() {
     return createExperienceTemplate()
-  }
-
-  getElement() {
-    if(!this._element) {
-      this._element = createElement(this.getTemplate())
-    }
-    return this._element
-  }
-
-  removeElement() {
-    this._element = null
   }
 }

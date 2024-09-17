@@ -1,4 +1,4 @@
-import { createElement } from "../../util";
+import AbstractComponent from "../abstract-component";
 
 const createNameСandidate = () => {
   return (
@@ -12,23 +12,9 @@ const createNameСandidate = () => {
   )
 }
 
-export default class NameCandidate {
-  constructor() {
-    this._element = null
-  }
+export default class NameCandidate extends AbstractComponent {
 
   getTemplate() {
     return createNameСandidate();
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate())
-    }
-    return this._element
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }

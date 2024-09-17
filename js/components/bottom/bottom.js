@@ -1,4 +1,4 @@
-import { createElement } from "../../util"
+import AbstractComponent from "../abstract-component"
 
 const createBottomSection = () => {
   return (
@@ -8,23 +8,8 @@ const createBottomSection = () => {
   )
 }
 
-export default class Bottom {
-  constructor(){
-    this._element = null
-  }
-
+export default class Bottom extends AbstractComponent {
   getTemplate() {
     return createBottomSection()
-  }
-
-  getElement() {
-    if(!this._element) {
-      this._element = createElement(this.getTemplate())
-    }
-    return this._element
-  }
-
-  removeElement() {
-    this._element = null
   }
 }

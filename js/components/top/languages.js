@@ -1,4 +1,4 @@
-import { createElement } from "../../util"
+import AbstractComponent from "../abstract-component"
 
 export const createLanguageBar = () => {
   return (
@@ -19,23 +19,8 @@ export const createLanguageBar = () => {
   )
 }
 
-export default class LanguageBar {
-  constructor(){
-    this._element = null
-  }
-
+export default class LanguageBar extends AbstractComponent {
   getTemplate() {
     return createLanguageBar()
-  }
-
-  getElement() {
-    if(!this._element) {
-      this._element = createElement(this.getTemplate())
-    }
-    return this._element
-  }
-
-  removeElement() {
-    this._element = null
   }
 }
