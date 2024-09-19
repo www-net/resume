@@ -1,6 +1,6 @@
 import AbstractComponent from "../abstract-component";
 
-const createEducationCard = () => {
+const createEducationCardTemplate = () => {
 
   const randomMostRecent = Math.random() > 0.5 ? `education__card--most-recent`: ``;
   const randomLike = randomMostRecent ? `<button class="education__like education__like--yellow"></button>`: `<button class="education__like"></button>`;
@@ -27,7 +27,29 @@ const createEducationCard = () => {
 };
 
 export default class EducationCard extends AbstractComponent {
+  constructor(){
+    super()
+    this._toggle = null
+  }
+
   getTemplate() {
-    return createEducationCard()
+    return createEducationCardTemplate()
+  }
+
+  setButtonClickToggle() {
+    const button = this.getElement().querySelector(`.education__like`);
+
+    this._toggle = () => {
+      button.classList.toggle(`education__like--yellow`);
+      this.getElement().classList.toggle(`education__card--most-recent`);
+    }
+
+    button.addEventListener(`click`, this._toggle)
+  }
+
+  removeButtonClickToggle() {
+    const button = this.getElement().querySelector(`.education__like`);
+
+    button.removeEventListener(`click`, this._toggle)
   }
 };

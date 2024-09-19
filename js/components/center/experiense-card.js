@@ -44,12 +44,36 @@ const createExperienceCardTemplate = (data, idx) => {
 
 export default class ExperienceCard extends AbstractComponent {
   constructor(data, idx) {
-    super();
+    super()
     this._data = data
     this._idx = idx
+    this._toggle = null
   }
 
   getTemplate() {
     return createExperienceCardTemplate(this._data, this._idx)
+  }
+
+  // Устанавливает обработчик событий на кнопку
+  setButtonClickHandler(handler) {
+    this.getElement().querySelector(`.most-recent`).addEventListener(`click`, handler);
+  }
+
+  // Устанавливает переключатель статуса на кнопку
+  setButtonClickToggle() {
+    const button = this.getElement().querySelector(`.most-recent`)
+    this._toggle = () => {
+
+      button.classList.toggle(`most-recent--active`);
+      this.getElement().classList.toggle(`experience__item--most-recent`);
+    }
+
+    button.addEventListener(`click`, this._toggle);
+  }
+
+  removeButtonClickToggle() {
+    const button = this.getElement().querySelector(`.most-recent`);
+
+    button.removeEventListener(`click`, this._toggle);
   }
 }

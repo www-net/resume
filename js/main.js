@@ -24,72 +24,53 @@ const EDUCATION_CARDS_COUNT = 3;
 const siteMain = document.querySelector(`main`);
 
 
-render(siteMain, new TopComponent().getElement());
+render(siteMain, new TopComponent());
 
 const resumeTop = document.querySelector(`.top`);
 
-render(resumeTop, new ProfileImageComponent().getElement());
-render(resumeTop, new NameСandidateComponent().getElement());
-render(resumeTop, new LanguageComponent().getElement());
+render(resumeTop, new ProfileImageComponent());
+render(resumeTop, new NameСandidateComponent());
+render(resumeTop, new LanguageComponent());
 
-render(siteMain, new CenterComponent().getElement());
+render(siteMain, new CenterComponent());
 const resumeCenter = document.querySelector(`.center`);
 
-render(resumeCenter, new ExperienceComponent().getElement());
-const experience = resumeCenter.querySelector(`.experience__list`);
+render(resumeCenter, new ExperienceComponent());
+const experienceListElement = resumeCenter.querySelector(`.experience__list`);
 
 const renderExperienceCard = (cardListElement, data, idx, place) => {
   const experienceCardComponent = new ExperienceCardComponent(data, idx)
-  const experienceCardElement = experienceCardComponent.getElement();
-  const mostRecentButton = experienceCardElement.querySelector(`.most-recent`);
 
-  mostRecentButton.addEventListener(`click`, onMostRecentButtonClick)
+  experienceCardComponent.setButtonClickToggle();
 
-  function onMostRecentButtonClick(evt) {
-    evt.preventDefault()
-
-    mostRecentButton.classList.toggle(`most-recent--active`);
-    experienceCardElement.classList.toggle(`experience__item--most-recent`);
-  }
-
-  render(cardListElement, experienceCardElement, place)
+  render(cardListElement, experienceCardComponent, place)
 }
 
-experienceDate.forEach((data, idx) => renderExperienceCard(experience, data, idx))
+experienceDate.forEach((data, idx) => renderExperienceCard(experienceListElement, data, idx))
 
-render(resumeCenter, new ToolsComponent(toolIcons).getElement());
+render(resumeCenter, new ToolsComponent(toolIcons));
 
-render(siteMain, new BottomComponent().getElement());
+render(siteMain, new BottomComponent());
 const resumeBottom = document.querySelector(`.bottom`);
 const resumeBottomBox = resumeBottom.querySelector(`.bottom-box`);
 
-render(resumeBottom, new EducationComponent().getElement(), RenderPosition.AFTERBEGIN );
+render(resumeBottom, new EducationComponent(), RenderPosition.AFTERBEGIN );
 const education = resumeBottom.querySelector(`.education__list`);
 
 const renderEducationCard = (cardListElement, place) => {
   const cardComponent = new EducationCardComponent();
 
-  const cardElement = cardComponent.getElement()
-  const likeButton = cardElement.querySelector(`.education__like`);
-  
-  likeButton.addEventListener(`click`, onLikeButtonClick);
-  
-  function onLikeButtonClick (evt) {
-    evt.preventDefault();
+  cardComponent.setButtonClickToggle();
 
-    likeButton.classList.toggle(`education__like--yellow`);
-    cardElement.classList.toggle(`education__card--most-recent`)
-  }
-
-  render(cardListElement, cardComponent.getElement(), place)
+  render(cardListElement, cardComponent, place)
 }
 
 for (let i = 0; i < EDUCATION_CARDS_COUNT; i++) {
   renderEducationCard(education)
 }
 
-render(resumeBottomBox, new InterestsComponent().getElement());
-render(resumeBottomBox, new ContactsComponent().getElement());
+render(resumeBottomBox, new InterestsComponent());
+render(resumeBottomBox, new ContactsComponent());
 
 
 
