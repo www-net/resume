@@ -34,15 +34,15 @@ render(resumeTop, new LanguageComponent());
 render(siteMain, new CenterComponent());
 const resumeCenter = document.querySelector(`.center`);
 render(resumeCenter, new ExperienceComponent());
-const experienceListElement = resumeCenter.querySelector(`.experience__list`);
 const renderExperienceCard = (cardListElement, data, idx, place) => {
   const experienceCardComponent = new ExperienceCardComponent(data, idx);
-
+  
   experienceCardComponent.setButtonClickToggle();
-
+  
   render(cardListElement, experienceCardComponent, place);
 }
 
+const experienceListElement = resumeCenter.querySelector(`.experience__list`);
 experienceDate.forEach((data, idx) => renderExperienceCard(experienceListElement, data, idx));
 render(resumeCenter, new ToolsComponent(toolIcons));
 

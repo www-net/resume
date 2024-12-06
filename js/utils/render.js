@@ -25,3 +25,7 @@ export const createElement = (template) => {
   newElement.innerHTML = template
   return newElement.firstElementChild
 } 
+
+export const remove = (element) => {
+  element.remove()
+}
