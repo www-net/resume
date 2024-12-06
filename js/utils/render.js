@@ -26,6 +26,8 @@ export const createElement = (template) => {
   return newElement.firstElementChild
 } 
 
-export const remove = (element) => {
-  element.remove()
+// Повесить на кнопку удаления в режиме редактирования
+export const remove = (component) => {
+  component.getElement().remove();
+  component.removeElement();
 }

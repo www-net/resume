@@ -36,7 +36,6 @@ const resumeCenter = document.querySelector(`.center`);
 render(resumeCenter, new ExperienceComponent());
 const renderExperienceCard = (cardListElement, data, idx, place) => {
   const experienceCardComponent = new ExperienceCardComponent(data, idx);
-  
   experienceCardComponent.setButtonClickToggle();
   
   render(cardListElement, experienceCardComponent, place);
