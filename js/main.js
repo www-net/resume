@@ -4,12 +4,12 @@ import '../css/fonts.css';
 import { render, RenderPosition } from './utils/render';
 
 import TopComponent from './components/top/top';
-import ProfileImageComponent  from './components/top/profile-img';
-import NameСandidateComponent  from './components/top/name';
+import ProfileImageComponent from './components/top/profile-img';
+import NameСandidateComponent from './components/top/name';
 import LanguageComponent from './components/top/languages';
-import CenterComponent  from './components/center/center';
+import CenterComponent from './components/center/center';
 import ExperienceComponent from './components/center/experience';
-import ExperienceCardComponent  from './components/center/experiense-card';
+import ExperienceCardComponent from './components/center/experiense-card';
 import ToolsComponent from './components/center/tools';
 import BottomComponent from './components/bottom/bottom';
 import EducationComponent from './components/bottom/education';
@@ -17,8 +17,8 @@ import EducationCardComponent from './components/bottom/education-card';
 import InterestsComponent from './components/bottom/interests';
 import ContactsComponent from './components/bottom/contacts';
 
-import { experienceDate} from './mock/experience';
-import { toolIcons} from './mock/toolIcon';
+import { experienceDate } from './mock/experience';
+import { toolIcons } from './mock/toolIcon';
 
 const EDUCATION_CARDS_COUNT = 3;
 
@@ -35,9 +35,14 @@ render(siteMain, new CenterComponent());
 const resumeCenter = document.querySelector(`.center`);
 render(resumeCenter, new ExperienceComponent());
 const renderExperienceCard = (cardListElement, data, idx, place) => {
-  const experienceCardComponent = new ExperienceCardComponent(data, idx);
-  experienceCardComponent.setButtonClickToggle();
-  
+  const experienceCardComponent = new ExperienceCardComponent(data, idx); 
+
+  experienceCardComponent.setMostRecentButtonClickHandler((evt) => {
+    const button = evt.target
+    button.classList.toggle(`most-recent--active`);
+    experienceCardComponent.getElement().classList.toggle(`experience__item--most-recent`);
+  })
+
   render(cardListElement, experienceCardComponent, place);
 }
 
@@ -49,12 +54,14 @@ render(siteMain, new BottomComponent());
 const resumeBottom = document.querySelector(`.bottom`);
 const resumeBottomBox = resumeBottom.querySelector(`.bottom-box`);
 
-render(resumeBottom, new EducationComponent(), RenderPosition.AFTERBEGIN );
+render(resumeBottom, new EducationComponent(), RenderPosition.AFTERBEGIN);
 const education = resumeBottom.querySelector(`.education__list`);
 
 const renderEducationCard = (cardListElement, place) => {
   const cardComponent = new EducationCardComponent();
-
+  //
+  //
+  //
   cardComponent.setButtonClickToggle();
 
   render(cardListElement, cardComponent, place);

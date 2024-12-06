@@ -55,21 +55,11 @@ export default class ExperienceCard extends AbstractComponent {
   }
 
   // Устанавливает обработчик событий на кнопку
-  setButtonClickHandler(handler) {
+  setMostRecentButtonClickHandler(handler) {
     this.getElement().querySelector(`.most-recent`).addEventListener(`click`, handler);
+
   }
 
-  // Устанавливает переключатель статуса на кнопку
-  setButtonClickToggle() {
-    const button = this.getElement().querySelector(`.most-recent`)
-    this._toggle = () => {
-
-      button.classList.toggle(`most-recent--active`);
-      this.getElement().classList.toggle(`experience__item--most-recent`);
-    }
-
-    button.addEventListener(`click`, this._toggle);
-  }
 
   removeButtonClickToggle() {
     const button = this.getElement().querySelector(`.most-recent`);
