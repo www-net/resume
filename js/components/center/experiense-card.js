@@ -1,4 +1,4 @@
-import { MONTHS } from "../../mock/constants";
+import { MONTHS } from "../../const";
 import AbstractComponent from "../abstract-component";
 
 const desctiptionMarkup = (tasks) => {

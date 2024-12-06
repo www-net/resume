@@ -1,10 +1,10 @@
 import '../css/style.css';
 import '../css/fonts.css';
 
-import { render, RenderPosition } from './util';
+import { render, RenderPosition } from './utils/render';
 
 import TopComponent from './components/top/top';
-import ProfileImageComponent  from './components/top/profile-img'
+import ProfileImageComponent  from './components/top/profile-img';
 import NameСandidateComponent  from './components/top/name';
 import LanguageComponent from './components/top/languages';
 import CenterComponent  from './components/center/center';
@@ -17,15 +17,14 @@ import EducationCardComponent from './components/bottom/education-card';
 import InterestsComponent from './components/bottom/interests';
 import ContactsComponent from './components/bottom/contacts';
 
-import { experienceDate, toolIcons } from './mock/constants';
+import { experienceDate} from './mock/experience';
+import { toolIcons} from './mock/toolIcon';
 
 const EDUCATION_CARDS_COUNT = 3;
 
 const siteMain = document.querySelector(`main`);
 
-
 render(siteMain, new TopComponent());
-
 const resumeTop = document.querySelector(`.top`);
 
 render(resumeTop, new ProfileImageComponent());
@@ -34,20 +33,17 @@ render(resumeTop, new LanguageComponent());
 
 render(siteMain, new CenterComponent());
 const resumeCenter = document.querySelector(`.center`);
-
 render(resumeCenter, new ExperienceComponent());
 const experienceListElement = resumeCenter.querySelector(`.experience__list`);
-
 const renderExperienceCard = (cardListElement, data, idx, place) => {
-  const experienceCardComponent = new ExperienceCardComponent(data, idx)
+  const experienceCardComponent = new ExperienceCardComponent(data, idx);
 
   experienceCardComponent.setButtonClickToggle();
 
-  render(cardListElement, experienceCardComponent, place)
+  render(cardListElement, experienceCardComponent, place);
 }
 
-experienceDate.forEach((data, idx) => renderExperienceCard(experienceListElement, data, idx))
-
+experienceDate.forEach((data, idx) => renderExperienceCard(experienceListElement, data, idx));
 render(resumeCenter, new ToolsComponent(toolIcons));
 
 render(siteMain, new BottomComponent());
@@ -62,11 +58,11 @@ const renderEducationCard = (cardListElement, place) => {
 
   cardComponent.setButtonClickToggle();
 
-  render(cardListElement, cardComponent, place)
+  render(cardListElement, cardComponent, place);
 }
 
 for (let i = 0; i < EDUCATION_CARDS_COUNT; i++) {
-  renderEducationCard(education)
+  renderEducationCard(education);
 }
 
 render(resumeBottomBox, new InterestsComponent());
