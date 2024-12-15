@@ -29,14 +29,18 @@ const createEducationCardTemplate = () => {
 export default class EducationCard extends AbstractComponent {
   constructor(){
     super()
-    this._toggle = null
+    // this._toggle = null
   }
 
   getTemplate() {
     return createEducationCardTemplate()
   }
 
-  setButtonClickToggle() {
+  setLikeButtonClickHandler(handler) {
+    this.getElement().querySelector(`.education__like`).addEventListener(`click`, handler)
+  };
+
+  setLikeButtonClickToggle() {
     const button = this.getElement().querySelector(`.education__like`);
 
     this._toggle = () => {
@@ -47,9 +51,9 @@ export default class EducationCard extends AbstractComponent {
     button.addEventListener(`click`, this._toggle)
   }
 
-  removeButtonClickToggle() {
-    const button = this.getElement().querySelector(`.education__like`);
+  // removeButtonClickToggle() {
+  //   const button = this.getElement().querySelector(`.education__like`);
 
-    button.removeEventListener(`click`, this._toggle)
-  }
+  //   button.removeEventListener(`click`, this._toggle)
+  // }
 };

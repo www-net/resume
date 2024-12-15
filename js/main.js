@@ -1,78 +1,37 @@
 import '../css/style.css';
 import '../css/fonts.css';
 
-import { render, RenderPosition } from './utils/render';
+import { render } from './utils/render';
+
+import TopController from './controllers/topSide';
 
 import TopComponent from './components/top/top';
-import ProfileImageComponent from './components/top/profile-img';
-import NameСandidateComponent from './components/top/name';
-import LanguageComponent from './components/top/languages';
 import CenterComponent from './components/center/center';
-import ExperienceComponent from './components/center/experience';
-import ExperienceCardComponent from './components/center/experiense-card';
-import ToolsComponent from './components/center/tools';
+
 import BottomComponent from './components/bottom/bottom';
-import EducationComponent from './components/bottom/education';
-import EducationCardComponent from './components/bottom/education-card';
-import InterestsComponent from './components/bottom/interests';
-import ContactsComponent from './components/bottom/contacts';
 
-import { experienceDate } from './mock/experience';
-import { toolIcons } from './mock/toolIcon';
+import CenterController from './controllers/centerSide';
+import BottomController from './controllers/bottomSide';
 
-const EDUCATION_CARDS_COUNT = 3;
 
 const siteMain = document.querySelector(`main`);
 
-render(siteMain, new TopComponent());
-const resumeTop = document.querySelector(`.top`);
+const topComponent = new TopComponent();
+const topController = new TopController(topComponent);
+render(siteMain, topComponent);
+topController.render();
 
-render(resumeTop, new ProfileImageComponent());
-render(resumeTop, new NameСandidateComponent());
-render(resumeTop, new LanguageComponent());
+const centerComponent = new CenterComponent(); 
+const centerController = new CenterController(centerComponent);
+render(siteMain, centerComponent);
+centerController.render();
 
-render(siteMain, new CenterComponent());
-const resumeCenter = document.querySelector(`.center`);
-render(resumeCenter, new ExperienceComponent());
-const renderExperienceCard = (cardListElement, data, idx, place) => {
-  const experienceCardComponent = new ExperienceCardComponent(data, idx); 
+const bottomComponent = new BottomComponent();
+const bottomController = new BottomController(bottomComponent);
+render(siteMain, bottomComponent);
+bottomController.render();
 
-  experienceCardComponent.setMostRecentButtonClickHandler((evt) => {
-    const button = evt.target
-    button.classList.toggle(`most-recent--active`);
-    experienceCardComponent.getElement().classList.toggle(`experience__item--most-recent`);
-  })
 
-  render(cardListElement, experienceCardComponent, place);
-}
-
-const experienceListElement = resumeCenter.querySelector(`.experience__list`);
-experienceDate.forEach((data, idx) => renderExperienceCard(experienceListElement, data, idx));
-render(resumeCenter, new ToolsComponent(toolIcons));
-
-render(siteMain, new BottomComponent());
-const resumeBottom = document.querySelector(`.bottom`);
-const resumeBottomBox = resumeBottom.querySelector(`.bottom-box`);
-
-render(resumeBottom, new EducationComponent(), RenderPosition.AFTERBEGIN);
-const education = resumeBottom.querySelector(`.education__list`);
-
-const renderEducationCard = (cardListElement, place) => {
-  const cardComponent = new EducationCardComponent();
-  //
-  //
-  //
-  cardComponent.setButtonClickToggle();
-
-  render(cardListElement, cardComponent, place);
-}
-
-for (let i = 0; i < EDUCATION_CARDS_COUNT; i++) {
-  renderEducationCard(education);
-}
-
-render(resumeBottomBox, new InterestsComponent());
-render(resumeBottomBox, new ContactsComponent());
 
 
 

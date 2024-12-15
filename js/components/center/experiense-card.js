@@ -47,7 +47,7 @@ export default class ExperienceCard extends AbstractComponent {
     super()
     this._data = data
     this._idx = idx
-    this._toggle = null
+    // this._toggle = null
   }
 
   getTemplate() {
@@ -57,13 +57,11 @@ export default class ExperienceCard extends AbstractComponent {
   // Устанавливает обработчик событий на кнопку
   setMostRecentButtonClickHandler(handler) {
     this.getElement().querySelector(`.most-recent`).addEventListener(`click`, handler);
-
   }
 
+  // removeButtonClickToggle() {
+  //   const button = this.getElement().querySelector(`.most-recent`);
 
-  removeButtonClickToggle() {
-    const button = this.getElement().querySelector(`.most-recent`);
-
-    button.removeEventListener(`click`, this._toggle);
-  }
+  //   button.removeEventListener(`click`, this._toggle);
+  // }
 }
