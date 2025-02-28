@@ -3,7 +3,7 @@ import AbstractComponent from '../abstract-component'
 const createExperienceTemplate = () => {
   return (
     `<section class="experience">
-      <h2 class="experience__title">Experience</h2>
+      <h2 class="experience__title" contentEditable="true">Experience</h2>
       <ul class="experience__list">
 
       <!-- cards -->

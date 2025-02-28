@@ -3,7 +3,7 @@ import AbstractComponent from "../abstract-component"
 const createEducationTemplate = () => {
   return (
     `<section class="education">
-        <h2 class="education__title">Education</h2>
+        <h2 class="education__title" contentEditable="true">Education</h2>
         <ul class="education__list">
 
         </ul>

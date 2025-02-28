@@ -14,7 +14,7 @@ const createToolsListMarkup = (title, sources) => {
 
   return (`
     <li class="tools__list-item">
-      <h3 class="tools__item-title">${title}</h3>
+      <h3 class="tools__item-title" contentEditable="true">${title}</h3>
       <ul class="tools__inner-item-list">
         ${toolMarkup}
       </ul>
@@ -32,7 +32,7 @@ const createToolsTemplate = (toolIcons) => {
 
   return (
     `<section class="tools">
-      <h2 class="tools__title">Tools</h2>
+      <h2 class="tools__title" contentEditable="true">Tools</h2>
       <ul class="tools__list">
 
         ${toolMarkups}

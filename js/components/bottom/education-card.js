@@ -7,9 +7,9 @@ const createEducationCardTemplate = () => {
 
   return (
     `<li class="education__card ${randomMostRecent}">
-        <p class="education__card-date">2023</p>
-        <h3 class="education__card-title">UI/UX</h3>
-        <ul class="education__card-list">
+        <p class="education__card-date" contentEditable="true">2023</p>
+        <h3 class="education__card-title" contentEditable="true">UI/UX</h3>
+        <ul class="education__card-list" contentEditable="true">
           <li><span>#UX</span></li>
           <li><span>#UI</span></li>
           <li><span>#research</span></li>
@@ -20,7 +20,7 @@ const createEducationCardTemplate = () => {
           <li><span>#figma</span></li>
           <li><span>#Ux</span></li>
         </ul>
-        <p>Coursera</p>
+        <p contentEditable="true">Coursera</p>
         ${randomLike}
       </li>`
   )

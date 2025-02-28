@@ -21,19 +21,21 @@ const createExperienceCardTemplate = (data, idx) => {
   return (
     `<li class="experience__item ${mostRecent}">
             <div class="experience__item-head">
-              <p class="experience__time-wrapper"><time class="experience__item_date">${dateStart}</time> - <time class="experience__item_date">${dateEnd}</time></p>
+              <p class="experience__time-wrapper" contentEditable="true">
+                <time class="experience__item_date">${dateStart}</time> - <time class="experience__item_date">${dateEnd}</time>
+              </p>
               ${idx === 0 ? `<b class="most-recent most-recent--active">most recent</b>` : `<b class="most-recent">most recent</b>`}
             </div>
             <div class="experience__item-main">
               <div>
-                <h3 class="experience__item-name">${profession}</h3>
-                <div class="experience__item-box">
+                <h3 class="experience__item-name" contentEditable="true">${profession}</h3>
+                <div class="experience__item-box" contentEditable="true">
                   ${workForm}
                   <p class="experience__further">${clockLoad}</p>
                 </div>
               </div>
-              <div class=experience__item-information>
-                <ul class="experience__item-list">
+              <div class=experience__item-information >
+                <ul class="experience__item-list" contentEditable="true">
                 ${description}
                 </ul>
               </div>

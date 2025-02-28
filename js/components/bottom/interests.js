@@ -3,8 +3,8 @@ import AbstractComponent from "../abstract-component"
 const createInterestsTemplate = () => {
   return (
     `<section class="interests">
-            <h2 class="interests__title">Interests</h2>
-            <ul class="interests__list">
+            <h2 class="interests__title" contentEditable="true">Interests</h2>
+            <ul class="interests__list" contentEditable="true">
               <li class="interests__list-item"><span>branding</span></li>
               <li class="interests__list-item"><span>design</span></li>
               <li class="interests__list-item"><span>photography</span></li>
