@@ -17,6 +17,12 @@ export default class AbstractComponent {
     return this._element;
   }
 
+  setContentEditableHandler(handler) {
+    this.getElement()
+    .querySelector('[contentEditable]')
+    .addEventListener('input', handler)
+  }
+
   removeElement() {
     this._element = null;
   }

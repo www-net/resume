@@ -13,8 +13,8 @@ const createExperienceCardTemplate = (data, idx) => {
   const { date, profession, organisation, clockLoad, tasks } = data;
 
   const mostRecent = idx === 0 ? `experience__item--most-recent` : ``;
-  const dateStart = `${MONTHS[date.start.getMonth()].slice(0, 3)}.${date.start.getFullYear()}`;
-  const dateEnd = date.end ? `${MONTHS[date.end.getMonth()].slice(0, 3)}.${date.end.getFullYear()}` : `Present`;
+  const dateStart = `${MONTHS[new Date(date.start).getMonth()].slice(0, 3)}.${new Date(date.start).getFullYear()}`;
+  const dateEnd = date.end ? `${MONTHS[new Date(date.end).getMonth()].slice(0, 3)}.${new Date(date.end).getFullYear()}` : `Present`;
   const workForm = organisation ? `<p class="experience__further">${organisation}</p>` : ``;
   const description = desctiptionMarkup(tasks);
 
