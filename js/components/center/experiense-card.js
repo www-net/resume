@@ -1,10 +1,9 @@
-import { MONTHS } from "../../const";
 import AbstractComponent from "../abstract-component";
 
 const desctiptionMarkup = (tasks) => {
-  return tasks.map(el => {
+  return tasks.map((task, idx) => {
     return (`
-      <li>${el}</li>
+      <li contentEditable="true" id="task-${idx}">${task}</li>
       `)
   }).join(`\n`)
 };
@@ -13,29 +12,29 @@ const createExperienceCardTemplate = (data, idx) => {
   const { date, profession, organisation, clockLoad, tasks } = data;
 
   const mostRecent = idx === 0 ? `experience__item--most-recent` : ``;
-  const dateStart = `${MONTHS[new Date(date.start).getMonth()].slice(0, 3)}.${new Date(date.start).getFullYear()}`;
-  const dateEnd = date.end ? `${MONTHS[new Date(date.end).getMonth()].slice(0, 3)}.${new Date(date.end).getFullYear()}` : `Present`;
-  const workForm = organisation ? `<p class="experience__further">${organisation}</p>` : ``;
+  const dateStart = date.start;
+  const dateEnd = date.end ? date.end : `Present`;
+  const workForm = organisation ? `<p class="experience__further" contentEditable="true" id="organisation">${organisation}</p>` : ``;
   const description = desctiptionMarkup(tasks);
 
   return (
     `<li class="experience__item ${mostRecent}">
             <div class="experience__item-head">
-              <p class="experience__time-wrapper" contentEditable="true">
-                <time class="experience__item_date">${dateStart}</time> - <time class="experience__item_date">${dateEnd}</time>
+              <p class="experience__time-wrapper">
+                <time class="experience__item_date" contentEditable="true" id="dateStart">${dateStart}</time> - <time class="experience__item_date" contentEditable="true" id="dateEnd">${dateEnd}</time>
               </p>
-              ${idx === 0 ? `<b class="most-recent most-recent--active">most recent</b>` : `<b class="most-recent">most recent</b>`}
+              ${idx === 0 ? `<button class="most-recent most-recent--active">most recent</button>` : `<button class="most-recent">most recent</button>`}
             </div>
             <div class="experience__item-main">
               <div>
-                <h3 class="experience__item-name" contentEditable="true">${profession}</h3>
-                <div class="experience__item-box" contentEditable="true">
+                <h3 class="experience__item-name" contentEditable="true" id="profession">${profession}</h3>
+                <div class="experience__item-box">
                   ${workForm}
-                  <p class="experience__further">${clockLoad}</p>
+                  <p class="experience__further" contentEditable="true" id="clockLoad">${clockLoad}</p>
                 </div>
               </div>
               <div class=experience__item-information >
-                <ul class="experience__item-list" contentEditable="true">
+                <ul class="experience__item-list">
                 ${description}
                 </ul>
               </div>
@@ -59,6 +58,15 @@ export default class ExperienceCard extends AbstractComponent {
   // Устанавливает обработчик событий на кнопку
   setMostRecentButtonClickHandler(handler) {
     this.getElement().querySelector(`.most-recent`).addEventListener(`click`, handler);
+  }
+
+  setContentEditableHandler(handler) {
+    this.getElement()
+    .querySelectorAll('[contentEditable]')
+    .forEach((el) => el.addEventListener('input', (evt) => {
+      evt.preventDefault();
+      handler(evt.currentTarget, this._idx);
+    }))
   }
 
   // removeButtonClickToggle() {

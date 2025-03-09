@@ -325,8 +325,10 @@ section {
 }
 
 .most-recent {
+  display: flex;
+  align-items: center;
   height: 1.5rem;
-  padding: 0.1em 0.7em;
+  padding: 1em;
   
   font-size: 1em;
   font-weight: 500;
@@ -339,6 +341,7 @@ section {
   background-color: var(--basic-gray);
   cursor: pointer;
   transition: border-color 0.25s;
+  outline: none;
 }
 
 .most-recent--active {

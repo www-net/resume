@@ -7,13 +7,43 @@ export default class TopController {
   constructor(container, store) {
     this._container = container;
     this._store = store
+
+    this._onNameTextChange = this._onNameTextChange.bind(this)
+    this._onLanguageTextChange = this._onLanguageTextChange.bind(this)
   }
 
   render() {
     const container = this._container.getElement();
-
     render(container, new ProfileImageComponent());
-    render(container, new NameСandidateComponent(this._store));
-    render(container, new LanguageComponent(this._store));
+
+    const nameCandidateComponent = new NameСandidateComponent(this._store)
+    nameCandidateComponent.setContentEditableHandler(this._onNameTextChange)
+    render(container, nameCandidateComponent);
+
+    const languageComponent = new LanguageComponent(this._store)
+    languageComponent.setContentEditableHandler(this._onLanguageTextChange)
+
+    render(container, languageComponent);
+  }
+
+  _onNameTextChange(el) {
+    const elId = el.id
+    const data = this._store.getData()
+    data[elId] = el.textContent
+    sessionStorage.setItem('resume', JSON.stringify(data))
+  }
+
+  _onLanguageTextChange(el) {
+    const elId = el.id
+    const data = this._store.getData()
+    if (elId === 'sectionName') {
+      data.languages[elId] = el.textContent
+    } else {
+      const arrLanguages = data.languages.knowLanguages
+      const idx = arrLanguages.find((item) => item === el.id)
+      arrLanguages.splice(idx, 1, el.textContent)
+      console.log(arrLanguages)
+    }
+    sessionStorage.setItem('resume', JSON.stringify(data))
   }
 }

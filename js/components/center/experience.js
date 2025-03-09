@@ -1,9 +1,12 @@
 import AbstractComponent from '../abstract-component'
 
-const createExperienceTemplate = () => {
+const createExperienceTemplate = (store) => {
+
+const sectionName = store.getData().experience.sectionName
+
   return (
     `<section class="experience">
-      <h2 class="experience__title" contentEditable="true">Experience</h2>
+      <h2 class="experience__title" contentEditable="true" id="sectionName">${sectionName}</h2>
       <ul class="experience__list">
 
       <!-- cards -->
@@ -14,7 +17,13 @@ const createExperienceTemplate = () => {
 }
 
 export default class Experience extends AbstractComponent {
-  getTemplate() {
-    return createExperienceTemplate()
-  }
+
+  constructor(store) {
+  super()
+  this._store = store
+}
+
+getTemplate() {
+  return createExperienceTemplate(this._store)
+}
 }

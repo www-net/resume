@@ -17,7 +17,6 @@ export default class Store {
   //   }
   // }
 
-
   getData() {
     if (sessionStorage.getItem('resume')) {
       this.CURRENT_RESUME = JSON.parse(sessionStorage.getItem('resume'));

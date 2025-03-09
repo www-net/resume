@@ -6,10 +6,10 @@ const {salutation, name, profession} = store.getData();
 
   return (
     `<section class="name-box">
-      <p class="name-box__sub" contentEditable="true">${salutation}</p>
+      <p class="name-box__sub" contentEditable="true" id="salutation">${salutation}</p>
       <div>
-        <h2 class="name-box__name" contentEditable="true">${name}</h2>
-        <p class="name-box__profession" contentEditable="true">${profession}</p>
+        <h2 class="name-box__name" contentEditable="true" id="name">${name}</h2>
+        <p class="name-box__profession" contentEditable="true" id="profession">${profession}</p>
       </div>
     </section>`
   )

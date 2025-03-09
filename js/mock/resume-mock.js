@@ -41,8 +41,10 @@
 //     ]
 //   },
 // ]
-
 // export const experienceDateJson = JSON.stringify(experienceDate); 
+
+import { MONTHS } from "../const"
+
 
 
 const resumeMock = {
@@ -62,7 +64,7 @@ const resumeMock = {
     cards: [
       {
         date: {
-          start: new Date(`2023 07`),
+          start: `${MONTHS[new Date(`2023 07`).getMonth()].slice(0, 3)}.${new Date(`2023 07`).getFullYear()}`,
           end: ''
         },
         profession: `Marketing Manager`,
@@ -75,7 +77,7 @@ const resumeMock = {
       },
       {
         date: {
-          start: new Date(`2017`),
+          start: `${MONTHS[new Date(`2017`).getMonth()].slice(0, 3)}.${new Date(`2023 07`).getFullYear()}`,
           end: ''
         },
         profession: `Graphic / Web designer`,
@@ -89,8 +91,8 @@ const resumeMock = {
       },
       {
         date: {
-          start: new Date(`2021 09`),
-          end: new Date(`2023 06`)
+          start: `${MONTHS[new Date(`2021 09`).getMonth()].slice(0, 3)}.${new Date(`2023 07`).getFullYear()}`,
+          end: `${MONTHS[new Date(`2023 06`).getMonth()].slice(0, 3)}.${new Date(`2023 06`).getFullYear()}`,
         },
         profession: `Legal Assistant`,
         organisation: `Law Firm`,

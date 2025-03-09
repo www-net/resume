@@ -7,7 +7,7 @@ export const createLanguageBar = (store) => {
     return knowLanguages.reduce((acc, lang) => {
       return acc + (`
         <li class="languages__progress">
-          <span contentEditable="true">${lang}</span>
+          <span contentEditable="true" id="${lang}">${lang}</span>
           <input class="languages__range-control" tabindex="0"
             type="range"
             value="10"
@@ -21,7 +21,7 @@ export const createLanguageBar = (store) => {
 
   return (
     `<section class="languages">
-      <h2 class="languages__title" contentEditable="true">${sectionName}</h2>
+      <h2 class="languages__title" contentEditable="true" id="sectionName">${sectionName}</h2>
       <ul class="languages__list">
         ${languages()}
       </ul>

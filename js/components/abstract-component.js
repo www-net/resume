@@ -19,8 +19,11 @@ export default class AbstractComponent {
 
   setContentEditableHandler(handler) {
     this.getElement()
-    .querySelector('[contentEditable]')
-    .addEventListener('input', handler)
+    .querySelectorAll('[contentEditable]')
+    .forEach((el) => el.addEventListener('input', (evt) => {
+      evt.preventDefault();
+      handler(evt.currentTarget);
+    }))
   }
 
   removeElement() {
