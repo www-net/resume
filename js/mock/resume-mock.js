@@ -136,6 +136,21 @@ const resumeMock = {
       },
     ]
 
+  },
+  interests: {
+    sectionName: 'Interests',
+    items: [
+      'branding',
+      'design',
+      'photography',
+      'artificial',
+      'illustration',
+      'typography',
+      'social',
+      'research',
+      'dron',
+      'games',
+    ]
   }
 }
 

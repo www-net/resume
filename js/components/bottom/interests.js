@@ -1,27 +1,34 @@
 import AbstractComponent from "../abstract-component"
 
-const createInterestsTemplate = () => {
+const createInterestsTemplate = (store) => {
+
+  const {sectionName, items } = store.getData().interests
+
+  const itemsToString = items.map(item => {
+    return (`
+        <li class="interests__list-item" contentEditable="true" id="interest"><span>${item}</span></li>
+      `)
+  }).join('\n')
+
   return (
     `<section class="interests">
-            <h2 class="interests__title" contentEditable="true">Interests</h2>
-            <ul class="interests__list" contentEditable="true">
-              <li class="interests__list-item"><span>branding</span></li>
-              <li class="interests__list-item"><span>design</span></li>
-              <li class="interests__list-item"><span>photography</span></li>
-              <li class="interests__list-item"><span>artificial intelligence</span></li>
-              <li class="interests__list-item"><span>illustration</span></li>
-              <li class="interests__list-item"><span>typography</span></li>
-              <li class="interests__list-item"><span>social networks</span></li>
-              <li class="interests__list-item"><span>research</span></li>
-              <li class="interests__list-item"><span>dron pilot</span></li>
-              <li class="interests__list-item"><span>games</span></li>
+            <h2 class="interests__title" contentEditable="true" id="sectionName">${sectionName}</h2>
+            <ul class="interests__list" >
+
+            ${itemsToString}
+
             </ul>
           </section>`
   )
 }
 
 export default class Interests extends AbstractComponent {
+  constructor(store) {
+    super(),
+    this._store = store
+  }
+
   getTemplate() {
-    return createInterestsTemplate()
+    return createInterestsTemplate(this._store)
   }
 }

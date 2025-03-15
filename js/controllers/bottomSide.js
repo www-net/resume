@@ -11,17 +11,18 @@ export default class BottomController {
 
     this._onEducationComponent = this._onEducationComponent.bind(this)
     this._onEducationCard = this._onEducationCard.bind(this)
+    this._onInterests = this._onInterests.bind(this)
   }
 
-  render(){
+  render() {
     const container = this._container.getElement();
 
-    const  educationComponent = new EducationComponent(this._store)
+    const educationComponent = new EducationComponent(this._store)
     educationComponent.setContentEditableHandler(this._onEducationComponent)
     render(container, educationComponent, RenderPosition.AFTERBEGIN);
 
     const education = this._container.getElement().querySelector(`.education__list`);
-    
+
     const renderEducationCard = (cardListElement, data, idx, place) => {
       const cardComponent = new EducationCardComponent(data, idx);
       cardComponent.setLikeButtonClickHandler((evt) => {
@@ -31,16 +32,19 @@ export default class BottomController {
       });
 
       cardComponent.setContentEditableHandler(this._onEducationCard)
-    
+
       render(cardListElement, cardComponent, place);
     }
-    
+
     this._store.getData().education.cards.forEach((data, idx) => {
       renderEducationCard(education, data, idx);
     })
-    
+
     const resumeBottomBox = this._container.getElement().querySelector(`.bottom-box`);
-    render(resumeBottomBox, new InterestsComponent());
+    const interestsComponent = new InterestsComponent(this._store)
+    interestsComponent.setContentEditableHandler(this._onInterests)
+
+    render(resumeBottomBox, interestsComponent);
     render(resumeBottomBox, new ContactsComponent());
   }
 
@@ -54,17 +58,36 @@ export default class BottomController {
   _onEducationCard(el, idx) {
     const elId = el.id
     const data = this._store.getData()
+    const dataCards = data.education.cards
 
-    if(elId === 'skill') {
+    if (elId === 'skill') {
       const cardsSkills = Array.from(el.closest('ul')
-      .querySelectorAll('span'))
-      .map(el => {
-        return el.textContent
-      })
-      data.education.cards[idx].skills = cardsSkills
+        .querySelectorAll('span'))
+        .map(el => {
+          return el.textContent
+        })
+      dataCards[idx].skills = cardsSkills
       this._store.setData(data)
     } else {
-      data.education.cards[idx][elId] = el.textContent
+      dataCards[idx][elId] = el.textContent
+      this._store.setData(data)
+    }
+  }
+
+  _onInterests(el) {
+    const elId = el.id
+    const data = this._store.getData()
+
+    if (elId === 'interest') {
+      const dataInterests = Array.from(el.closest('ul')
+        .querySelectorAll('span'))
+        .map(el => {
+          return el.textContent
+        })
+      data.interests.items = dataInterests
+      this._store.setData(data)
+    } else {
+      data.interests[elId] = el.textContent
       this._store.setData(data)
     }
   }

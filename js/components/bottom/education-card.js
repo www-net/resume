@@ -14,8 +14,8 @@ const createEducationCardTemplate = (data) => {
 
   return (
     `<li class="education__card ${randomMostRecent}">
-        <p class="education__card-date" contentEditable="true">${date}</p>
-        <h3 class="education__card-title" contentEditable="true">${title}</h3>
+        <p class="education__card-date" contentEditable="true" id="date">${date}</p>
+        <h3 class="education__card-title" contentEditable="true" id="title">${title}</h3>
         <ul class="education__card-list">
 
           ${skillsToString}
