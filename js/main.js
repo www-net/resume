@@ -24,7 +24,7 @@ render(siteMain, centerComponent);
 centerController.render();
 
 const bottomComponent = new BottomComponent();
-const bottomController = new BottomController(bottomComponent);
+const bottomController = new BottomController(bottomComponent, store);
 render(siteMain, bottomComponent);
 bottomController.render();
 

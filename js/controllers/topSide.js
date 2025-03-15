@@ -30,7 +30,7 @@ export default class TopController {
     const elId = el.id
     const data = this._store.getData()
     data[elId] = el.textContent
-    sessionStorage.setItem('resume', JSON.stringify(data))
+    this._store.setData(data)    
   }
 
   _onLanguageTextChange(el) {
@@ -44,6 +44,6 @@ export default class TopController {
       arrLanguages.splice(idx, 1, el.textContent)
       console.log(arrLanguages)
     }
-    sessionStorage.setItem('resume', JSON.stringify(data))
+    this._store.setData(data)
   }
 }

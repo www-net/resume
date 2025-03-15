@@ -27,4 +27,8 @@ export default class Store {
       return this.CURRENT_RESUME
     }
   }
+
+  setData(data) {
+    sessionStorage.setItem('resume', JSON.stringify(data))
+  }
 }

@@ -533,6 +533,7 @@ section {
 }
 
 .education {
+  flex-grow: 1;
   padding: 1.5rem;
 
   border-radius: 12px;

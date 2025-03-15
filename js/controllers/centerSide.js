@@ -21,9 +21,6 @@ export default class CenterController {
     const cardsData = this._store.getData().experience.cards
     const toolsData = this._store.getData().tools.types
 
-    console.log(cardsData)
-    console.log(toolsData)
-
 // render Experience
     const experienceComponent = new ExperienceComponent(this._store)
     experienceComponent.setContentEditableHandler(this._onExperienceComponentTextChange)
@@ -61,7 +58,7 @@ export default class CenterController {
   _onExperienceComponentTextChange(el) {
     const data = this._store.getData()
     data.experience.sectionName = el.textContent
-    sessionStorage.setItem('resume', JSON.stringify(data))
+    this._store.setData(data)    
   }
 
   _onExperienceCardTextChange(el, idx) {
@@ -78,7 +75,7 @@ export default class CenterController {
     }
 
     card[elId] = el.textContent
-    sessionStorage.setItem('resume', JSON.stringify(data))
+    this._store.setData(data)
   }
 
   _onMostRecentButtonActive(evt) {
@@ -93,7 +90,7 @@ export default class CenterController {
     const dataTools = data.tools
 
     dataTools[elId] = el.textContent
-    sessionStorage.setItem('resume', JSON.stringify(data))
+    this._store.setData(data)
   }
 
   _onToolTypesTextChange(el, idx) {
@@ -102,7 +99,7 @@ export default class CenterController {
     const dataToolType = data.tools.types[idx]
 
     dataToolType[elId] = el.textContent
-    sessionStorage.setItem('resume', JSON.stringify(data))
+    this._store.setData(data)
   }
 }
 
