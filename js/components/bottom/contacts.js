@@ -1,13 +1,16 @@
 import AbstractComponent from "../abstract-component"
 
-export const createContactsTemplate = () => {
+export const createContactsTemplate = (store) => {
+
+  const {welcome, mail } = store.getData().contacts
+
   return (
     `<section class="contacts">
         <h2 class="visually-hidden">Contacts</h2>
         <div class="contacts-box">
-          <p class="contacts__text" contentEditable="true">Let´s chat! I´m ready to work on excinting projects</p>
+          <p class="contacts__text" contentEditable="true" id="welcome">${welcome}</p>
 
-          <a class="contacts__link" href="" contentEditable="true">srkarthik.designscape@gmail.com</a>
+          <a class="contacts__link" href="" contentEditable="true" id="mail">${mail}</a>
         </div>
   
       </section>`
@@ -15,7 +18,12 @@ export const createContactsTemplate = () => {
 }
 
 export default class Contacts extends AbstractComponent {
+constructor(store) {
+  super()
+  this._store = store
+}
+
   getTemplate() {
-    return createContactsTemplate()
+    return createContactsTemplate(this._store)
   }
 }

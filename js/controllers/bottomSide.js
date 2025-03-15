@@ -12,6 +12,7 @@ export default class BottomController {
     this._onEducationComponent = this._onEducationComponent.bind(this)
     this._onEducationCard = this._onEducationCard.bind(this)
     this._onInterests = this._onInterests.bind(this)
+    this._onContacts = this._onContacts.bind(this)
   }
 
   render() {
@@ -43,9 +44,11 @@ export default class BottomController {
     const resumeBottomBox = this._container.getElement().querySelector(`.bottom-box`);
     const interestsComponent = new InterestsComponent(this._store)
     interestsComponent.setContentEditableHandler(this._onInterests)
-
     render(resumeBottomBox, interestsComponent);
-    render(resumeBottomBox, new ContactsComponent());
+
+    const contactsComponent = new ContactsComponent(this._store)
+    contactsComponent.setContentEditableHandler(this._onContacts)
+    render(resumeBottomBox, contactsComponent);
   }
 
   _onEducationComponent(el) {
@@ -90,5 +93,13 @@ export default class BottomController {
       data.interests[elId] = el.textContent
       this._store.setData(data)
     }
+  }
+
+  _onContacts(el) {
+    const elId = el.id
+    const data = this._store.getData()
+
+    data.contacts[elId] = el.textContent
+    this._store.setData(data)
   }
 }

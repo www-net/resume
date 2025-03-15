@@ -151,6 +151,10 @@ const resumeMock = {
       'dron',
       'games',
     ]
+  },
+  contacts: {
+    welcome: 'Let´s chat! I´m ready to work on excinting projects',
+    mail: 'srkarthik.designscape@gmail.com'
   }
 }
 
