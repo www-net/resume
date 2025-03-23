@@ -10,10 +10,10 @@ const createToolsMarkup = (iconSrc) => {
 
 const createToolTypeTemplate = (data) => {
 
-    const { title, sources } = data;
-    const toolMarkup = sources.map((iconSrc) => createToolsMarkup(iconSrc)).join('\n');
+  const { title, sources } = data;
+  const toolMarkup = sources.map((iconSrc) => createToolsMarkup(iconSrc)).join('\n');
 
-    return (`
+  return (`
       <li class="tools__list-item">
         <h3 class="tools__item-title" contentEditable="true" id="title">${title}</h3>
         <ul class="tools__inner-item-list">
@@ -21,7 +21,7 @@ const createToolTypeTemplate = (data) => {
         </ul>
       </li>
       `)
-  }
+}
 
 export default class ToolType extends AbstractComponent {
   constructor(data, idx) {
@@ -39,6 +39,14 @@ export default class ToolType extends AbstractComponent {
       .querySelectorAll('[contentEditable]')
       .forEach((el) => el.addEventListener('input', (evt) => {
         evt.preventDefault();
+
+        const el = evt.currentTarget
+        el.classList.add('input-active');
+
+        el.addEventListener('animationend', () => {
+          el.classList.remove('input-active');
+        }, { once: true })
+
         handler(evt.currentTarget, this._idx);
       }))
   }

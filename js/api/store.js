@@ -5,18 +5,6 @@ export default class Store {
     this.CURRENT_RESUME = null
   }
 
-  // fetchResume() {
-  //   try {
-  //     const response = fetch('/resume-default.json')
-  //     const data = response.json()
-  //     this.CURRENT_RESUME = data
-  //     sessionStorage.setItem('resume', JSON.stringify(data))
-
-  //   } catch (error) {
-  //     console.error('Ошибочка. Error loading json', error)
-  //   }
-  // }
-
   getData() {
     if (sessionStorage.getItem('resume')) {
       this.CURRENT_RESUME = JSON.parse(sessionStorage.getItem('resume'));

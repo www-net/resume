@@ -28,7 +28,3 @@ const bottomController = new BottomController(bottomComponent, store);
 render(siteMain, bottomComponent);
 bottomController.render();
 
-
-
-
-
