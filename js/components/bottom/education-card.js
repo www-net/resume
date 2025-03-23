@@ -2,15 +2,15 @@ import AbstractComponent from "../abstract-component";
 
 const createEducationCardTemplate = (data) => {
 
-  const {date, title, institute, skills} = data
+  const { date, title, institute, skills } = data
 
   const skillsToString = skills.map(skill => {
     return (
       `<li><span contentEditable="true" id="skill">${skill}</span></li>`
     )
   }).join('\n')
-  const randomMostRecent = Math.random() > 0.5 ? `education__card--most-recent`: ``;
-  const randomLike = randomMostRecent ? `<button class="education__like education__like--yellow"></button>`: `<button class="education__like"></button>`;
+  const randomMostRecent = Math.random() > 0.5 ? `education__card--most-recent` : ``;
+  const randomLike = randomMostRecent ? `<button class="education__like education__like--yellow"></button>` : `<button class="education__like"></button>`;
 
   return (
     `<li class="education__card ${randomMostRecent}">
@@ -28,7 +28,7 @@ const createEducationCardTemplate = (data) => {
 };
 
 export default class EducationCard extends AbstractComponent {
-  constructor(data, idx){
+  constructor(data, idx) {
     super()
     this._data = data
     this._idx = idx
@@ -56,11 +56,19 @@ export default class EducationCard extends AbstractComponent {
 
   setContentEditableHandler(handler) {
     this.getElement()
-    .querySelectorAll('[contentEditable]')
-    .forEach((el) => el.addEventListener('input', (evt) => {
-      evt.preventDefault();
-      handler(evt.currentTarget, this._idx);
-    }))
+      .querySelectorAll('[contentEditable]')
+      .forEach((el) => el.addEventListener('input', (evt) => {
+        evt.preventDefault();
+
+        const el = evt.currentTarget
+        el.classList.add('input-active');
+
+        el.addEventListener('animationend', () => {
+          el.classList.remove('input-active');
+        }, { once: true })
+
+        handler(evt.currentTarget, this._idx);
+      }))
   }
 
   // removeButtonClickToggle() {
