@@ -10,7 +10,7 @@ export default class CenterController {
     this._container = container;
     this._store = store;
 
-    this._onExperienceComponentTextChange = this._onExperienceComponentTextChange.bind(this)
+    this._onExperienceComponentTitleChange = this._onExperienceComponentTitleChange.bind(this)
     this._onExperienceCardTextChange = this._onExperienceCardTextChange.bind(this)
     this._onMostRecentButtonClick = this._onMostRecentButtonClick.bind(this)
     this._onToolsTextChange = this._onToolsTextChange.bind(this)
@@ -24,7 +24,7 @@ export default class CenterController {
 
 // render Experience
     const experienceComponent = new ExperienceComponent(this._store)
-    experienceComponent.setContentEditableHandler(this._onExperienceComponentTextChange)
+    experienceComponent.setContentEditableHandler(this._onExperienceComponentTitleChange)
     render(container, experienceComponent);
 
 // render Experience-cards
@@ -56,17 +56,26 @@ export default class CenterController {
     toolsData.forEach((data, idx) => renderToolTypes(toolsListElement, data, idx))
   }
 
-  _onExperienceComponentTextChange(el) {
+  _onExperienceComponentTitleChange(el) {
     const data = this._store.getData()
     data.experience.sectionName = el.textContent
     this._store.setData(data)    
   }
 
-  _onExperienceCardTextChange(el, idx) {
+  _onExperienceCardTextChange(evt, idx) {
+    evt.preventDefault();
+    const el = evt.currentTarget
     const elId = el.id
     const data = this._store.getData()
     const card = data.experience.cards[idx]
 
+    // animation
+    el.classList.add('input-active');
+    el.addEventListener('animationend', () => {
+      el.classList.remove('input-active');
+    }, { once: true })
+
+    // save change
     if (elId === 'dateStart' || elId === 'dateEnd') {
       const time = elId === 'dateStart' ? 'start' : 'end'
       card.date[time] = el.textContent
@@ -74,7 +83,6 @@ export default class CenterController {
       const taskIdx = elId.replace('task-', '')
       card.tasks[taskIdx] = el.textContent
     }
-
     card[elId] = el.textContent
     this._store.setData(data)
   }
