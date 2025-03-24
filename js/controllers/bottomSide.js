@@ -11,8 +11,8 @@ export default class BottomController {
 
     this._onEducationComponentTitleChange = this._onEducationComponentTitleChange.bind(this)
     this._onEducationCardTextChange = this._onEducationCardTextChange.bind(this)
-    this._onInterests = this._onInterests.bind(this)
-    this._onContacts = this._onContacts.bind(this)
+    this._onInterestsTextChange = this._onInterestsTextChange.bind(this)
+    this._onContactsChange = this._onContactsChange.bind(this)
   }
 
   render() {
@@ -43,11 +43,11 @@ export default class BottomController {
 
     const resumeBottomBox = this._container.getElement().querySelector(`.bottom-box`);
     const interestsComponent = new InterestsComponent(this._store)
-    interestsComponent.setContentEditableHandler(this._onInterests)
+    interestsComponent.setContentEditableHandler(this._onInterestsTextChange)
     render(resumeBottomBox, interestsComponent);
 
     const contactsComponent = new ContactsComponent(this._store)
-    contactsComponent.setContentEditableHandler(this._onContacts)
+    contactsComponent.setContentEditableHandler(this._onContactsChange)
     render(resumeBottomBox, contactsComponent);
   }
 
@@ -77,7 +77,7 @@ export default class BottomController {
     }
   }
 
-  _onInterests(el) {
+  _onInterestsTextChange(el) {
     const elId = el.id
     const data = this._store.getData()
 
@@ -95,7 +95,7 @@ export default class BottomController {
     }
   }
 
-  _onContacts(el) {
+  _onContactsChange(el) {
     const elId = el.id
     const data = this._store.getData()
 
