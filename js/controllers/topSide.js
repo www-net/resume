@@ -27,7 +27,6 @@ export default class TopController {
 
     render(container, new ProfileImageComponent());
 
-
     const nameCandidateComponent = new NameСandidateComponent(this._store)
     nameCandidateComponent.setContentEditableHandler(this._onNameTextChange)
     render(container, nameCandidateComponent);

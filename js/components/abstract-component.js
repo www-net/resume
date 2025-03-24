@@ -23,14 +23,14 @@ export default class AbstractComponent {
       .forEach((el) => el.addEventListener('input', (evt) => {
         evt.preventDefault();
 
-        const el = evt.currentTarget
-        el.classList.add('input-active');
+        const elem = evt.currentTarget
+        elem.classList.add('input-active');
 
-        el.addEventListener('animationend', () => {
-          el.classList.remove('input-active');
-      }, { once: true })
+        elem.addEventListener('animationend', () => {
+          elem.classList.remove('input-active');
+        }, { once: true })
 
-        handler(el);
+        handler(elem);
       }))
   }
 

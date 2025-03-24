@@ -38,16 +38,8 @@ export default class ToolType extends AbstractComponent {
     this.getElement()
       .querySelectorAll('[contentEditable]')
       .forEach((el) => el.addEventListener('input', (evt) => {
-        evt.preventDefault();
 
-        const el = evt.currentTarget
-        el.classList.add('input-active');
-
-        el.addEventListener('animationend', () => {
-          el.classList.remove('input-active');
-        }, { once: true })
-
-        handler(evt.currentTarget, this._idx);
+        handler(evt, this._idx);
       }))
   }
 

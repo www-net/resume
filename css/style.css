@@ -23,6 +23,7 @@
   --light-green: #ebf9f2;
   --basic-yellow: #f6ed1e;
   --transparent-yellow: rgb(126, 115, 18, .4);
+  --red: tomato;
 }
 
 html {
@@ -68,7 +69,7 @@ body {
   top: calc(1px * var(--y));
   z-index: 1;
 
-  padding: 200%;
+  padding: 100%;
 
   background-color: var(--basic-yellow);
   border-radius: 50%;
@@ -742,7 +743,6 @@ section {
   color: var(--basic-gray);
   font-size: var(--font-size-bigger);
 }
-
 
 .input-active[contentEditable] {
   animation-name: shadow;

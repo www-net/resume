@@ -75,7 +75,7 @@ export default class CenterController {
       el.classList.remove('input-active');
     }, { once: true })
 
-    // save change
+    // save text change
     if (elId === 'dateStart' || elId === 'dateEnd') {
       const time = elId === 'dateStart' ? 'start' : 'end'
       card.date[time] = el.textContent
@@ -103,11 +103,21 @@ export default class CenterController {
     this._store.setData(data)
   }
 
-  _onToolTypesTextChange(el, idx) {
+  _onToolTypesTextChange(evt, idx) {
+    evt.preventDefault();
+
+    const el = evt.currentTarget
     const elId = el.id
     const data = this._store.getData()
     const dataToolType = data.tools.types[idx]
 
+    // animation
+    el.classList.add('input-active');
+    el.addEventListener('animationend', () => {
+      el.classList.remove('input-active');
+    }, { once: true })
+
+    // save text change
     dataToolType[elId] = el.textContent
     this._store.setData(data)
   }
