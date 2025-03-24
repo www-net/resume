@@ -43,15 +43,9 @@ export default class EducationCard extends AbstractComponent {
     this.getElement().querySelector(`.education__like`).addEventListener(`click`, handler)
   };
 
-  setLikeButtonClickToggle() {
+  setLikeButtonClick(handler) {
     const button = this.getElement().querySelector(`.education__like`);
-
-    this._toggle = () => {
-      button.classList.toggle(`education__like--yellow`);
-      this.getElement().classList.toggle(`education__card--most-recent`);
-    }
-
-    button.addEventListener(`click`, this._toggle)
+    button.addEventListener(`click`, handler)    
   }
 
   setContentEditableHandler(handler) {

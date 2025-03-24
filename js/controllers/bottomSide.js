@@ -3,6 +3,7 @@ import EducationCardComponent from '../components/bottom/education-card';
 import InterestsComponent from '../components/bottom/interests';
 import ContactsComponent from '../components/bottom/contacts';
 import { render, RenderPosition } from '../utils/render';
+import { waveAnimation } from '../animations/wave';
 
 export default class BottomController {
   constructor(container, store) {
@@ -11,6 +12,7 @@ export default class BottomController {
 
     this._onEducationComponentTitleChange = this._onEducationComponentTitleChange.bind(this)
     this._onEducationCardTextChange = this._onEducationCardTextChange.bind(this)
+    this._onLikeButtonClick = this._onLikeButtonClick.bind(this)
     this._onInterestsTextChange = this._onInterestsTextChange.bind(this)
     this._onContactsChange = this._onContactsChange.bind(this)
   }
@@ -26,11 +28,7 @@ export default class BottomController {
 
     const renderEducationCard = (cardListElement, data, idx, place) => {
       const cardComponent = new EducationCardComponent(data, idx);
-      cardComponent.setLikeButtonClickHandler((evt) => {
-        const button = evt.target
-        button.classList.toggle(`education__like--yellow`);
-        cardComponent.getElement().classList.toggle(`education__card--most-recent`);
-      });
+      cardComponent.setLikeButtonClickHandler(this._onLikeButtonClick)
 
       cardComponent.setContentEditableHandler(this._onEducationCardTextChange)
 
@@ -75,6 +73,15 @@ export default class BottomController {
       dataCards[idx][elId] = el.textContent
       this._store.setData(data)
     }
+  }
+
+  _onLikeButtonClick(evt) {
+    const button = evt.target
+    console.log(button)
+    button.classList.toggle(`education__like--yellow`);
+    button.closest(`.education__card`).classList.toggle(`education__card--most-recent`)
+
+    waveAnimation(evt)
   }
 
   _onInterestsTextChange(el) {

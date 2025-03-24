@@ -23,7 +23,6 @@
   --light-green: #ebf9f2;
   --basic-yellow: #f6ed1e;
   --transparent-yellow: rgb(126, 115, 18, .4);
-  --red: tomato;
 }
 
 html {
@@ -56,10 +55,9 @@ body {
   overflow: hidden;
 }
 
-
 [ripple] {
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .ripple::before {
@@ -70,9 +68,9 @@ body {
   top: calc(1px * var(--y));
   z-index: 1;
 
-  padding: 40%;
+  padding: 200%;
 
-  background-color: var(--basic-white);
+  background-color: var(--basic-yellow);
   border-radius: 50%;
   opacity: 0;
   transform: translate(-50%, -50%) scale(1);
@@ -341,6 +339,7 @@ section {
 
 .experience__item--most-recent {
   color: var(--basic-white);
+
   background-color: var(--basic-green);
 }
 
@@ -362,6 +361,7 @@ section {
   align-items: center;
   height: 1.5rem;
   padding: 1em;
+  overflow: hidden;
 
   font-size: 1em;
   font-weight: 500;
@@ -373,8 +373,9 @@ section {
   border-radius: 59px;
   background-color: var(--basic-gray);
   cursor: pointer;
-  transition: border-color 0.25s;
   outline: none;
+
+  transition: border-color 0.25s;
 }
 
 .most-recent--active {
