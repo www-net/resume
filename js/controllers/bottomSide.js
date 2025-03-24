@@ -9,8 +9,8 @@ export default class BottomController {
     this._container = container;
     this._store = store;
 
-    this._onEducationComponent = this._onEducationComponent.bind(this)
-    this._onEducationCard = this._onEducationCard.bind(this)
+    this._onEducationComponentTitleChange = this._onEducationComponentTitleChange.bind(this)
+    this._onEducationCardTextChange = this._onEducationCardTextChange.bind(this)
     this._onInterests = this._onInterests.bind(this)
     this._onContacts = this._onContacts.bind(this)
   }
@@ -19,7 +19,7 @@ export default class BottomController {
     const container = this._container.getElement();
 
     const educationComponent = new EducationComponent(this._store)
-    educationComponent.setContentEditableHandler(this._onEducationComponent)
+    educationComponent.setContentEditableHandler(this._onEducationComponentTitleChange)
     render(container, educationComponent, RenderPosition.AFTERBEGIN);
 
     const education = this._container.getElement().querySelector(`.education__list`);
@@ -32,7 +32,7 @@ export default class BottomController {
         cardComponent.getElement().classList.toggle(`education__card--most-recent`);
       });
 
-      cardComponent.setContentEditableHandler(this._onEducationCard)
+      cardComponent.setContentEditableHandler(this._onEducationCardTextChange)
 
       render(cardListElement, cardComponent, place);
     }
@@ -51,14 +51,14 @@ export default class BottomController {
     render(resumeBottomBox, contactsComponent);
   }
 
-  _onEducationComponent(el) {
+  _onEducationComponentTitleChange(el) {
     const elId = el.id
     const data = this._store.getData()
     data.education[elId] = el.textContent
     this._store.setData(data)
   }
 
-  _onEducationCard(el, idx) {
+  _onEducationCardTextChange(el, idx) {
     const elId = el.id
     const data = this._store.getData()
     const dataCards = data.education.cards

@@ -3,6 +3,7 @@ import ExperienceCardComponent from '../components/center/experiense-card';
 import ToolsComponent from '../components/center/tools';
 import ToolTypeComponent from '../components/center/tool-type';
 import { render } from '../utils/render';
+import { waveAnimation } from '../animations/wave';
 
 export default class CenterController {
   constructor(container, store) {
@@ -11,7 +12,7 @@ export default class CenterController {
 
     this._onExperienceComponentTextChange = this._onExperienceComponentTextChange.bind(this)
     this._onExperienceCardTextChange = this._onExperienceCardTextChange.bind(this)
-    this._onMostRecentButtonActive = this._onMostRecentButtonActive.bind(this)
+    this._onMostRecentButtonClick = this._onMostRecentButtonClick.bind(this)
     this._onToolsTextChange = this._onToolsTextChange.bind(this)
     this._onToolTypesTextChange = this._onToolTypesTextChange.bind(this)
   }
@@ -30,9 +31,9 @@ export default class CenterController {
     const renderExperienceCard = (cardListElement, data, idx, place) => {
       const experienceCardComponent = new ExperienceCardComponent(data, idx);
 
-      experienceCardComponent.setMostRecentButtonClickHandler(this._onMostRecentButtonActive)
+      experienceCardComponent.setMostRecentButtonClickHandler(this._onMostRecentButtonClick)
       experienceCardComponent.setContentEditableHandler(this._onExperienceCardTextChange, idx)
-
+      
       render(cardListElement, experienceCardComponent, place);
     }
 
@@ -78,10 +79,11 @@ export default class CenterController {
     this._store.setData(data)
   }
 
-  _onMostRecentButtonActive(evt) {
+  _onMostRecentButtonClick(evt) {
     const button = evt.target
     button.classList.toggle('most-recent--active');
     button.closest('.experience__item').classList.toggle(`experience__item--most-recent`);
+    waveAnimation(evt)
   }
 
   _onToolsTextChange(el) {

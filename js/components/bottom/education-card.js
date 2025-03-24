@@ -70,10 +70,4 @@ export default class EducationCard extends AbstractComponent {
         handler(evt.currentTarget, this._idx);
       }))
   }
-
-  // removeButtonClickToggle() {
-  //   const button = this.getElement().querySelector(`.education__like`);
-
-  //   button.removeEventListener(`click`, this._toggle)
-  // }
 };

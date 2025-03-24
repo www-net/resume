@@ -3,6 +3,7 @@ import NameСandidateComponent from '../components/top/name';
 import LanguageComponent from '../components/top/languages';
 import SavePdfComponent from '../components/top/save-pdf';
 import { render } from '../utils/render';
+import { waveAnimation } from '../animations/wave';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
@@ -14,6 +15,7 @@ export default class TopController {
     this._onNameTextChange = this._onNameTextChange.bind(this)
     this._onLanguageTextChange = this._onLanguageTextChange.bind(this)
     this._onSaveButton = this._onSaveButton.bind(this)
+    this._onLanguageBarClick = this._onLanguageBarClick.bind(this)
   }
 
   render() {
@@ -32,6 +34,7 @@ export default class TopController {
 
     const languageComponent = new LanguageComponent(this._store)
     languageComponent.setContentEditableHandler(this._onLanguageTextChange)
+    languageComponent.setWaveEffectHandler(this._onLanguageBarClick)
 
     render(container, languageComponent);
   }
@@ -83,8 +86,11 @@ export default class TopController {
       const arrLanguages = data.languages.knowLanguages
       const idx = arrLanguages.find((item) => item === el.id)
       arrLanguages.splice(idx, 1, el.textContent)
-      console.log(arrLanguages)
     }
     this._store.setData(data)
+  }
+
+  _onLanguageBarClick(evt) {
+    waveAnimation(evt)
   }
 }

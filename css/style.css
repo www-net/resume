@@ -56,6 +56,34 @@ body {
   overflow: hidden;
 }
 
+
+[ripple] {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple::before {
+  content: '';
+
+  position: absolute;
+  left: calc(1px * var(--x));
+  top: calc(1px * var(--y));
+  z-index: 1;
+
+  padding: 40%;
+
+  background-color: var(--basic-white);
+  border-radius: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(1);
+  transition: opacity 600ms, transform 600ms;
+}
+
+.ripple.ripple-activate::before {
+  opacity: 0.8;
+  transform: translate(-50%, -50%) scale(0);
+}
+
 img {
   width: 100%;
   height: auto;

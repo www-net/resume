@@ -38,4 +38,12 @@ export default class LanguageBar extends AbstractComponent {
   getTemplate() {
     return createLanguageBar(this._store)
   }
+
+  setWaveEffectHandler(handler) {
+    this.getElement()
+      .querySelectorAll('.languages__range-control')
+      .forEach((el) => el.addEventListener('click', (evt) => {
+        handler(evt)
+      }))
+  }
 }

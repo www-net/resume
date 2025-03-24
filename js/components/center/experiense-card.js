@@ -76,10 +76,4 @@ export default class ExperienceCard extends AbstractComponent {
         handler(evt.currentTarget, this._idx);
       }))
   }
-
-  // removeButtonClickToggle() {
-  //   const button = this.getElement().querySelector(`.most-recent`);
-
-  //   button.removeEventListener(`click`, this._toggle);
-  // }
 }
