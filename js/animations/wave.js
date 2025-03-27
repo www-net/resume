@@ -5,19 +5,15 @@ export const waveAnimation = (event) => {
 
   const x = event.offsetX
   const y = event.offsetY
-
   root.style.setProperty('--x', x)
   root.style.setProperty('--y', y)
 
-  el.setAttribute('ripple', true)
   el.classList.add('ripple', 'ripple-activate')
+  el.addEventListener('transitionend', () => {
+    el.classList.remove('ripple')
+  })
 
   requestAnimationFrame(() => {
     el.classList.remove('ripple-activate')
-  })
-
-  el.addEventListener('transitionend', () => {
-    el.classList.remove('ripple')
-    el.removeAttribute('ripple')
   })
 }

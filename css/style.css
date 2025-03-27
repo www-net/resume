@@ -56,18 +56,12 @@ body {
   overflow: hidden;
 }
 
-[ripple] {
-  position: relative;
-  /* overflow: hidden; */
-}
-
 .ripple::before {
   content: '';
 
   position: absolute;
   left: calc(1px * var(--x));
   top: calc(1px * var(--y));
-  z-index: 1;
 
   padding: 100%;
 
@@ -75,11 +69,11 @@ body {
   border-radius: 50%;
   opacity: 0;
   transform: translate(-50%, -50%) scale(1);
-  transition: opacity 600ms, transform 600ms;
+  transition: opacity 400ms, transform 400ms;
 }
 
 .ripple.ripple-activate::before {
-  opacity: 0.8;
+  opacity: 1;
   transform: translate(-50%, -50%) scale(0);
 }
 
@@ -98,13 +92,10 @@ a:hover {
   color: #535bf2;
 }
 
-
-
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
-
 
 #app {
   max-width: 1280px;
@@ -223,10 +214,13 @@ section {
 }
 
 .languages__range-control {
+  position: relative;
+
   width: 100%;
   -webkit-appearance: none;
   appearance: none;
   overflow: hidden;
+
   border-radius: 3px;
   cursor: ew-resize;
 }
@@ -358,6 +352,8 @@ section {
 }
 
 .most-recent {
+  position: relative;
+
   display: flex;
   align-items: center;
   height: 1.5rem;
